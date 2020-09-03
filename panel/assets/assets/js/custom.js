@@ -36,4 +36,17 @@ $(document).ready(function () {
 
         $.post($data_url, {data: $data}, function(response){});
     })
+
+    var uploadSection = Dropzone.forElement("#dropzone");
+
+    uploadSection.on("complete", function(file){
+
+        var $data_url = $("#dropzone").data("url");
+
+        $.post($data_url, {},function(response){
+
+            $(".image_list_container").html(response);
+
+        });
+    })
 })
