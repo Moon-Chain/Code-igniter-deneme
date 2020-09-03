@@ -1,4 +1,4 @@
-var LIBS = {
+ var LIBS = {
 	// Chart libraries
 	plot: [
 		"../panel/assets/libs/misc/flot/jquery.flot.min.js",
