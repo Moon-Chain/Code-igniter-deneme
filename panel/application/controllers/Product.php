@@ -17,7 +17,9 @@ class Product extends CI_Controller {
 		$viewData = new stdClass();
 
 		/** Tablodan Verilerin Getirilmesi */
-		$items = $this->product_model->get_all();
+		$items = $this->product_model->get_all(
+			array(), "rank ASC"
+		);
 		
 		/** View'e gönderilecek Değişkenlerin Set Edilmesi.. */
 		$viewData->viewFolder = $this->viewFolder;
@@ -179,6 +181,26 @@ class Product extends CI_Controller {
 				),
 				array(
 					"isActive" => $isActive,
+				)
+			);
+		}
+	}
+
+	public function rankSetter(){
+		$data = $this->input->post("data");
+
+		parse_str($data, $order);
+		
+		$items = $order["ord"];
+
+		foreach($items as $rank => $id){
+			$this->product_model->update(
+				array(
+					"id" => $id,
+					"rank !=" => $rank
+				),
+				array(
+					"rank" => $rank,
 				)
 			);
 		}
