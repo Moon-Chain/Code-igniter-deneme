@@ -1,15 +1,6 @@
 <div class="row">
     <div class="col-md-12">
-        <h4 class="m-b-lg">
-            Ürünün fotoğrafları
-        </h4>
-    </div>
-    <div class="col-md-12">
         <div class="widget">
-            <header class="widget-header">
-                <h4 class="widget-title">Dropzone</h4>
-            </header><!-- .widget-header -->
-            <hr class="widget-separator">
             <div class="widget-body">
                 <form action="../api/dropzone" class="dropzone" data-plugin="dropzone" data-options="{ url: '../api/dropzone'}">
                     <div class="dz-message">
@@ -30,7 +21,7 @@
     <div class="col-md-12">
         <div class="widget">
             <div class="widget-body">
-                <table class="table table-bordered table-striped table-hover">
+                <table class="table table-bordered table-striped table-hover pictures_list">
                     <thead>
                         <th>#id</th>
                         <th>Görsel</th>
@@ -40,14 +31,14 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <td>#1</td>
-                            <td><img width="50" src="https://www.edigitalagency.com.au/wp-content/uploads/square-payments-logo-png-transparent-background-vertical.png" class="img-responsive"></td>
+                            <td class="w100 text-center">#1</td>
+                            <td class="w100 text-center"><img width="50" src="https://www.edigitalagency.com.au/wp-content/uploads/square-payments-logo-png-transparent-background-vertical.png" class="img-responsive"></td>
                             <td>deneme-urunu.jpg</td>
-                            <td>
+                            <td class="w100 text-center">
                                 <input data-url="<?php echo base_url("product/isActiveSetter/"); ?>" class="isActive" type="checkbox" data-switchery data-color="#10c469" <?php echo (true) ? "checked" : ""; ?> />
                             </td>
-                            <td>
-                                <button data-url="<?php echo base_url("product/delete/"); ?>" type="button" class="btn btn-sm btn-danger btn-outline remove-btn">
+                            <td class="w100 text-center">
+                                <button data-url="<?php echo base_url("product/delete/"); ?>" type="button" class="btn btn-sm btn-danger btn-outline remove-btn btn-block">
                                     <i class="fa fa-trash"></i> Sil
                                 </button>
                             </td>
