@@ -30,7 +30,7 @@
                 <tbody>
                     <?php foreach($items as $item){?>
                         <tr>
-                            <td><?php echo $item->id; ?></td>
+                            <td>#<?php echo $item->id; ?></td>
                             <td><?php echo $item->url; ?></td>
                             <td><?php echo $item->title; ?></td>
                             <td><?php echo $item->description; ?></td>
@@ -39,7 +39,7 @@
                             </td>
                             <td>
                                 <a href="#" type="button" class="btn btn-sm btn-danger btn-outline"><i class="fa fa-trash"></i> Sil</a>
-                                <a href="#" type="button" class="btn btn-sm btn-info btn-outline"><i class="fa fa-pencil-square-o"></i> Düzenle</a>
+                                <a href="<?php echo base_url("product/update_form/$item->id"); ?>" type="button" class="btn btn-sm btn-info btn-outline"><i class="fa fa-pencil-square-o"></i> Düzenle</a>
                             </td>
                         </tr>
                     <?php } ?>
