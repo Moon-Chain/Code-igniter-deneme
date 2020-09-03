@@ -10,7 +10,7 @@
                 <form action="<?php echo base_url("product/save"); ?>" method="post">
                     <div class="form-group">
                         <label> Başlık</label>
-                        <input type="email" class="form-control" placeholder="Başlık" name="title">
+                        <input type="text" class="form-control" placeholder="Başlık" name="title">
                     </div>
                     <div class="form-group">
                         <label>Açıklama</label>
