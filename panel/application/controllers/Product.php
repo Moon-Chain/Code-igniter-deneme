@@ -66,11 +66,12 @@ class Product extends CI_Controller {
 				)
 			);
 
+			//TODO ALERT SİSTEMİ EKLENECEK..
 			if($insert)
 			{
-				echo "basarili kayit";
+				redirect(base_url("product"));
 			}else{
-				echo "basarisiz kayit";
+				redirect(base_url("product"));
 			}
 
 		}else{
