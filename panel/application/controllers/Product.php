@@ -137,7 +137,7 @@ class Product extends CI_Controller {
 		}else{
 
 			$viewData = new stdClass();
-			
+
 			$item = $this->product_model->get(
 				array(
 					"id" 	=> $id,
@@ -150,6 +150,22 @@ class Product extends CI_Controller {
 			$viewData->item = $item;
 
 			$this->load->view("{$viewData->viewFolder}/{$viewData->subViewFolder}/index", $viewData);
+		}
+	}
+
+	public function delete($id){
+		$delete = $this->product_model->delete(
+			array(
+				"id" => $id,
+			)
+		);
+
+		//TODO ALERT SİSTEMİ EKLENECEK
+		if($delete)
+		{
+			redirect(base_url("product"));
+		}else{
+			redirect(base_url("product"));
 		}
 	}
 }
