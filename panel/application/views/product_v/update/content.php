@@ -7,7 +7,7 @@
     <div class="col-md-12">
         <div class="widget">
             <div class="widget-body">
-                <form action="<?php echo base_url("product/save"); ?>" method="post">
+                <form action="<?php echo base_url("product/update/$item->id"); ?>" method="post">
                     <div class="form-group">
                         <label> Başlık</label>
                         <input type="text" class="form-control" placeholder="Başlık" name="title" value="<?php echo $item->title; ?>">
@@ -21,7 +21,7 @@
                             <?php echo $item->description; ?>
                         </textarea>
                     </div><!-- .widget-body -->
-                    <button type="submit" class="btn btn-primary btn-md btn-outline">Kaydet</button>
+                    <button type="submit" class="btn btn-primary btn-md btn-outline">Güncelle</button>
                     <a href="<?php echo base_url("product"); ?>" class="btn btn-md btn-danger btn-outline">İptal</a>
 				</div>
                 </form>
