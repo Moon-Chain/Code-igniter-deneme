@@ -54,7 +54,25 @@ class Product extends CI_Controller {
 		$validate = $this->form_validation->run();
 
 		if($validate){
-			echo "Kayit işlemleri başlar";
+
+			$insert = $this->product_model->add(
+				array(
+					"title"			=> $this->input->post("title"),
+					"description" 	=> $this->input->post("description"),
+					"url" 			=> "Test..",
+					"rank" 			=> 0,
+					"isActive"		=> 1,
+					"createdAt" 	=> date("Y-m-d H:i:s"),
+				)
+			);
+
+			if($insert)
+			{
+				echo "basarili kayit";
+			}else{
+				echo "basarisiz kayit";
+			}
+
 		}else{
 			$viewData = new stdClass();
 
