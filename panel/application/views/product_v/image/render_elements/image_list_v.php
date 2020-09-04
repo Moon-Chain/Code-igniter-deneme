@@ -33,7 +33,7 @@
                         <input data-url="<?php echo base_url("product/isCoverSetter/$image->id/$image->product_id"); ?>" class="isCover" type="checkbox" data-switchery data-color="#ff5b5b" <?php echo ($image->isCover) ? "checked" : ""; ?> />
                     </td>
                     <td class="w100 text-center">
-                        <button data-url="<?php echo base_url("product/delete/"); ?>" type="button" class="btn btn-sm btn-danger btn-outline remove-btn btn-block">
+                        <button data-url="<?php echo base_url("product/imageDelete/$image->id/$image->product_id"); ?>" type="button" class="btn btn-sm btn-danger btn-outline remove-btn btn-block">
                             <i class="fa fa-trash"></i> Sil
                         </button>
                     </td>

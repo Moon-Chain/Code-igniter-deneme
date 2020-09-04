@@ -175,6 +175,31 @@ class Product extends CI_Controller
 		}
 	}
 
+	public function imageDelete($id, $parent_id)
+	{
+		$fileName = $this->product_image_model->get(
+			array(
+				"id" => $id
+			)
+		);
+
+		$delete = $this->product_image_model->delete(
+			array(
+				"id" => $id,
+			)
+		);
+
+		//TODO ALERT SİSTEMİ EKLENECEK
+		if ($delete) {
+
+			unlink("uploads/{$this->viewFolder}/$fileName->img_url");
+
+			redirect(base_url("product/image_form/$parent_id"));
+		} else {
+			redirect(base_url("product/image_form/$parent_id"));
+		}
+	}
+
 	public function isActiveSetter($id)
 	{
 		if ($id) {
@@ -240,7 +265,8 @@ class Product extends CI_Controller
 			$viewData->item_images = $this->product_image_model->get_all(
 				array(
 					"product_id" => $parent_id,
-				), "rank ASC"
+				),
+				"rank ASC"
 			);
 
 			$render_html = $this->load->view("{$viewData->viewFolder}/{$viewData->subViewFolder}/render_elements/image_list_v", $viewData, true);
@@ -307,7 +333,8 @@ class Product extends CI_Controller
 		$viewData->item_images = $this->product_image_model->get_all(
 			array(
 				"product_id" => $id,
-			), "rank ASC"
+			),
+			"rank ASC"
 		);
 
 		$this->load->view("{$viewData->viewFolder}/{$viewData->subViewFolder}/index", $viewData);

@@ -2,7 +2,7 @@ $(document).ready(function () {
 
     $(".sortable").sortable();
 
-    $(".remove-btn").click(function () {
+    $(".content-container, .image_list_container").on('click', '.remove-btn', function () {
 
         var $data_url = $(this).data("url");
         Swal.fire({
