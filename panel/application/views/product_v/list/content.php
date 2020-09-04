@@ -16,9 +16,9 @@
 
             <?php } else { ?>
 
-                <table class="table table-hover table-striped content-container">
+                <table class="table table-hover table-striped table-bordered content-container">
                     <thead>
-                        <th><i class="fa fa-reorder"></i></th>
+                        <th class="order"><i class="fa fa-reorder"></i></th>
                         <th>#id</th>
                         <th>Başlık</th>
                         <th>Url</th>
@@ -29,15 +29,15 @@
                     <tbody class="sortable" data-url="<?php echo base_url("product/rankSetter"); ?>">
                         <?php foreach ($items as $item) { ?>
                             <tr id="ord-<?php echo $item->id; ?>">
-                                <td><i class="fa fa-reorder"></i></td>
-                                <td>#<?php echo $item->id; ?></td>
+                                <td class="order"><i class="fa fa-reorder"></i></td>
+                                <td class="w100 text-center">#<?php echo $item->id; ?></td>
                                 <td><?php echo $item->title; ?></td>
                                 <td><?php echo $item->url; ?></td>
                                 <td><?php echo $item->description; ?></td>
-                                <td>
+                                <td class="w100 text-center">
                                     <input data-url="<?php echo base_url("product/isActiveSetter/$item->id"); ?>" class="isActive" type="checkbox" data-switchery data-color="#10c469" <?php echo ($item->isActive) ? "checked" : ""; ?> />
                                 </td>
-                                <td>
+                                <td class="w100 text-center">
                                     <button data-url="<?php echo base_url("product/delete/$item->id"); ?>" type="button" class="btn btn-sm btn-danger btn-outline remove-btn">
                                         <i class="fa fa-trash"></i> Sil
                                     </button>
