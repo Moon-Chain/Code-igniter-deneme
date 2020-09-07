@@ -34,7 +34,7 @@
                                 <td class="w100 text-center">#<?php echo $item->id; ?></td>
                                 <td><?php echo $item->title; ?></td>
                                 <td><?php echo $item->url; ?></td>
-                                <td><?php echo $item->news_type; ?></td>
+                                <td class="text-center"><?php echo $item->news_type; ?></td>
                                 <td>
                                     <?php if ($item->news_type == "image") { ?>
 

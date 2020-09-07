@@ -33,7 +33,7 @@
                                 <td class="w100 text-center">#<?php echo $item->id; ?></td>
                                 <td><?php echo $item->title; ?></td>
                                 <td><?php echo $item->url; ?></td>
-                                <td>
+                                <td class="text-center">
                                     <img width="75" src="<?php echo base_url("uploads/$viewFolder/$item->img_url"); ?>" class="img-rounded">
                                 </td>
                                 <td class="w100 text-center">
