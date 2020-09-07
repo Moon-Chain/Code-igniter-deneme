@@ -37,7 +37,27 @@
                                 <td><?php echo $item->url; ?></td>
                                 <td><?php echo $item->description; ?></td>
                                 <td><?php echo $item->news_type; ?></td>
-                                <td>Görsel gelecek</td>
+                                <td>
+                                    <?php if ($item->news_type == "image") { ?>
+
+                                        <img 
+                                        width="100"
+                                        src="<?php echo base_url("uploads/$viewFolder/$item->img_url"); ?>" 
+                                        class="img-rounded">
+
+                                    <?php } else if ($item->news_type == "video") { ?>
+
+                                        <iframe
+                                            height="150"
+                                            src="<?php echo $item->video_url; ?>" 
+                                            frameborder="0" allow="accelerometer; autoplay; 
+                                            encrypted-media; gyroscope; picture-in-picture" 
+                                            allowfullscreen>
+                                        </iframe>
+
+                                    <?php } ?>
+
+                                </td>
                                 <td class="w100 text-center">
                                     <input data-url="<?php echo base_url("news/isActiveSetter/$item->id"); ?>" class="isActive" type="checkbox" data-switchery data-color="#10c469" <?php echo ($item->isActive) ? "checked" : ""; ?> />
                                 </td>
