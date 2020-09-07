@@ -30,7 +30,7 @@
                         <?php foreach ($items as $item) { ?>
                             <tr id="ord-<?php echo $item->id; ?>">
                                 <td class="order"><i class="fa fa-reorder"></i></td>
-                                <td class="w100 text-center">#<?php echo $item->id; ?></td>
+                                <td class="w50 text-center">#<?php echo $item->id; ?></td>
                                 <td><?php echo $item->title; ?></td>
                                 <td class="w200 text-center"><?php echo get_readable_date($item->event_date); ?></td>
                                 <td class="text-center">
