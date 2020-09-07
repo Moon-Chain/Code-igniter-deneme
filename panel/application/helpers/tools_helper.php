@@ -9,3 +9,9 @@ function convertToSeo($text)
 	return strtolower(str_replace($turkce, $convert, $text));
 }
 
+function get_readable_date($date){
+
+	return strftime('%e %B %Y', strtotime($date));
+
+}
+
