@@ -23,7 +23,7 @@
                         <div class="col-md-4">
                             <label for="datetimepicker1">Eğitim Tarihi</label>
                             <input type="hidden" name="event_date" id="datetimepicker1" data-plugin="datetimepicker" data-options="{inline: true, viewMode: 'days', format : 'YYYY-MM-DD HH:mm:ss'}" />
-                        </div><!-- END column -->
+                        </div>
 
                         <div class="form-group image_upload_container col-md-8">
                             <label>Görsel Seçiniz</label>
