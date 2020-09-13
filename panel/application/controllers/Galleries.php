@@ -148,12 +148,12 @@ class Galleries extends CI_Controller
 		$this->load->view("{$viewData->viewFolder}/{$viewData->subViewFolder}/index", $viewData);
 	}
 
-	public function update($id)
+	public function update($id, $gallery_type, $oldFolderName = "")
 	{
 		$this->load->library("form_validation");
 
 		// Kurallar yazilir..
-		$this->form_validation->set_rules("title", "Başlık", "required|trim");
+		$this->form_validation->set_rules("title", "Galeri Adı", "required|trim");
 
 		$this->form_validation->set_message(
 			array(
@@ -164,6 +164,31 @@ class Galleries extends CI_Controller
 		$validate = $this->form_validation->run();
 
 		if ($validate) {
+			$path = "uploads/$this->viewFolder/";
+			$folder_name = "";
+
+			if ($gallery_type == "image") {
+				$folder_name = convertToSeo($this->input->post("title"));
+				$path = "$path/images";
+			} else if ($gallery_type == "file") {
+				$folder_name = convertToSeo($this->input->post("title"));
+				$path = "$path/files";
+			}
+
+			if ($gallery_type != "video") {
+				if (!rename("$path/$oldFolderName", "$path/$folder_name")) {
+					$alert = array(
+						"title" => "İşlem Başarısız",
+						"text" => "Galeri üretilirken problem olutşu. (Yetki Hatası)",
+						"type" => "error",
+					);
+
+					$this->session->set_flashdata("alert", $alert);
+
+					redirect(base_url("galleries"));
+					die();
+				}
+			}
 
 			$update = $this->gallery_model->update(
 				array(
@@ -171,7 +196,7 @@ class Galleries extends CI_Controller
 				),
 				array(
 					"title"			=> $this->input->post("title"),
-					"description" 	=> $this->input->post("description"),
+					"folder_name" 	=> $folder_name,
 					"url" 			=> convertToSeo($this->input->post("title")),
 				)
 			);
@@ -192,7 +217,7 @@ class Galleries extends CI_Controller
 
 			$this->session->set_flashdata("alert", $alert);
 
-			redirect(base_url("product"));
+			redirect(base_url("galleries"));
 		} else {
 
 			$viewData = new stdClass();
@@ -214,30 +239,60 @@ class Galleries extends CI_Controller
 
 	public function delete($id)
 	{
-		$delete = $this->gallery_model->delete(
+
+		$gallery = $this->gallery_model->get(
 			array(
-				"id" => $id,
+				"id" => $id
 			)
 		);
 
+		if ($gallery) {
 
-		if ($delete) {
-			$alert = array(
-				"title" => "İşlem Başarılı",
-				"text" => "Kayıt başarılı bir şekilde silindi",
-				"type" => "success",
-			);
-		} else {
-			$alert = array(
-				"title" => "İşlem Başarısız",
-				"text" => "Kayıt silme sırasında bir problem oluştu",
-				"type" => "error",
-			);
+			if ($gallery->gallery_type != "video") {
+				if ($gallery->gallery_type == "image") {
+					$path = "uploads/$this->viewFolder/images/$gallery->folder_name";
+				} else if ($gallery->gallery_type == "file") {
+					$path = "uploads/$this->viewFolder/files/$gallery->folder_name";
+				}
+
+				$delete_folder = rmdir($path);
+
+				if (!$delete_folder) {
+					$alert = array(
+						"title" => "İşlem Başarılı",
+						"text" => "Kayıt silme sırasında bir problem oluştu",
+						"type" => "success",
+					);
+
+
+					die();
+				}
+				$delete = $this->gallery_model->delete(
+					array(
+						"id" => $id,
+					)
+				);
+
+
+				if ($delete) {
+					$alert = array(
+						"title" => "İşlem Başarılı",
+						"text" => "Kayıt başarılı bir şekilde silindi",
+						"type" => "success",
+					);
+				} else {
+					$alert = array(
+						"title" => "İşlem Başarısız",
+						"text" => "Kayıt silme sırasında bir problem oluştu",
+						"type" => "error",
+					);
+				}
+
+				$this->session->set_flashdata("alert", $alert);
+
+				redirect(base_url("galleries"));
+			}
 		}
-
-		$this->session->set_flashdata("alert", $alert);
-
-		redirect(base_url("product"));
 	}
 
 	public function imageDelete($id, $parent_id)
