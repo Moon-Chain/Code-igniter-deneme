@@ -53,7 +53,7 @@
                                         }
                                     ?>
                                     <a href="<?php echo base_url("galleries/update_form/$item->id"); ?>" type="button" class="btn btn-sm btn-info btn-outline"><i class="fa fa-pencil-square-o"></i> Düzenle</a>
-                                    <a href="<?php echo base_url("galleries/image_form/$item->id"); ?>" type="button" class="btn btn-sm btn-dark btn-outline"><i class="fa <?php echo $button_icon ?>"></i> Gözat</a>
+                                    <a href="<?php echo base_url("galleries/upload_form/$item->id"); ?>" type="button" class="btn btn-sm btn-dark btn-outline"><i class="fa <?php echo $button_icon ?>"></i> Gözat</a>
                                 </td>
                             </tr>
                         <?php } ?>

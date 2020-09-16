@@ -265,7 +265,6 @@ class Galleries extends CI_Controller
 					);
 
 
-					die();
 				}
 				$delete = $this->gallery_model->delete(
 					array(
@@ -448,30 +447,48 @@ class Galleries extends CI_Controller
 		}
 	}
 
-	public function image_form($id)
+	public function upload_form($id)
 	{
 		$viewData = new stdClass();
 
 		$viewData->viewFolder = $this->viewFolder;
 		$viewData->subViewFolder = "image";
 
-		$viewData->item = $this->gallery_model->get(
+		$item = $this->gallery_model->get(
 			array(
 				"id" => $id,
 			),
 		);
 
-		$viewData->item_images = $this->product_image_model->get_all(
-			array(
-				"product_id" => $id,
-			),
-			"rank ASC"
-		);
+		$viewData->item = $item;
+
+		if($item->gallery_type == "image"){
+			$viewData->items = $this->image_model->get_all(
+				array(
+					"gallery_id" => $id,
+				),
+				"rank ASC"
+			);
+		}else if($item->gallery_type == "file"){
+			$viewData->items = $this->file_model->get_all(
+				array(
+					"gallery_id" => $id,
+				),
+				"rank ASC"
+			);
+		}else{
+			$viewData->items = $this->video_model->get_all(
+				array(
+					"gallery_id" => $id,
+				),
+				"rank ASC"
+			);
+		}
 
 		$this->load->view("{$viewData->viewFolder}/{$viewData->subViewFolder}/index", $viewData);
 	}
 
-	public function image_upload($id)
+	public function file_upload($id)
 	{
 
 		$file_name  = convertToSeo(pathinfo($_FILES["file"]["name"], PATHINFO_FILENAME)) . "." . pathinfo($_FILES["file"]["name"], PATHINFO_EXTENSION);
