@@ -32,19 +32,28 @@
                             <tr id="ord-<?php echo $item->id; ?>">
                                 <td class="order"><i class="fa fa-reorder"></i></td>
                                 <td class="w100 text-center">#<?php echo $item->id; ?></td>
-                                <td><?php echo $item->title; ?></td>
-                                <td><?php echo $item->gallery_type; ?></td>
-                                <td><?php echo $item->folder_name; ?></td>
-                                <td><?php echo $item->url; ?></td>
-                                <td class="w100 text-center">
+                                <td class="text-center"><?php echo $item->title; ?></td>
+                                <td class="text-center"><?php echo $item->gallery_type; ?></td>
+                                <td class="text-center"><?php echo $item->folder_name; ?></td>
+                                <td class="text-center"><?php echo $item->url; ?></td>
+                                <td class="text-center">
                                     <input data-url="<?php echo base_url("galleries/isActiveSetter/$item->id"); ?>" class="isActive" type="checkbox" data-switchery data-color="#10c469" <?php echo ($item->isActive) ? "checked" : ""; ?> />
                                 </td>
                                 <td class="text-center">
                                     <button data-url="<?php echo base_url("galleries/delete/$item->id"); ?>" type="button" class="btn btn-sm btn-danger btn-outline remove-btn">
                                         <i class="fa fa-trash"></i> Sil
                                     </button>
+                                    <?php 
+                                        if($item->gallery_type == "image"){
+                                            $button_icon = "fa-image";
+                                        }else if($item->gallery_type == "video"){
+                                            $button_icon = "fa-play-circle-o";
+                                        }else{
+                                            $button_icon = "fa-folder";
+                                        }
+                                    ?>
                                     <a href="<?php echo base_url("galleries/update_form/$item->id"); ?>" type="button" class="btn btn-sm btn-info btn-outline"><i class="fa fa-pencil-square-o"></i> Düzenle</a>
-                                    <a href="<?php echo base_url("galleries/image_form/$item->id"); ?>" type="button" class="btn btn-sm btn-dark btn-outline"><i class="fa fa-image"></i> Resimler</a>
+                                    <a href="<?php echo base_url("galleries/image_form/$item->id"); ?>" type="button" class="btn btn-sm btn-dark btn-outline"><i class="fa <?php echo $button_icon ?>"></i> Gözat</a>
                                 </td>
                             </tr>
                         <?php } ?>
