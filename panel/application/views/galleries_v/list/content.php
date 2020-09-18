@@ -57,16 +57,16 @@
                                     <?php
 
                                     if($item->gallery_type == "image"){
-                                        
+
                                         $button_icon = "fa-image";
                                         $button_url = "galleries/upload_form/$item->id";
 
-                                    }else if($item->gallery_type == "video"){
+                                    } else if($item->gallery_type == "video") {
 
                                         $button_icon = "fa-play-circle-o";
                                         $button_url = "galleries/gallery_video_list/$item->id";
 
-                                    }else{
+                                    } else {
 
                                         $button_icon = "fa-folder";
                                         $button_url = "galleries/upload_form/$item->id";

@@ -25,7 +25,7 @@
                         <th>Durumu</th>
                         <th>İşlem</th>
                     </thead>
-                    <tbody class="sortable" data-url="<?php echo base_url("galleries/rankSetter"); ?>">
+                    <tbody class="sortable" data-url="<?php echo base_url("galleries/rankGalleryVideoSetter"); ?>">
 
                         <?php foreach($items as $item) { ?>
 
@@ -33,7 +33,7 @@
                                 <td class="order"><i class="fa fa-reorder"></i></td>
                                 <td class="w50 text-center">#<?php echo $item->id; ?></td>
                                 <td class="text-center"><?php echo $item->url; ?></td>
-                                <td class="text-center w200">
+                                <td class="text-center w100">
                                     <iframe
                                         width="200"
                                         src="<?php echo $item->url; ?>"
@@ -46,7 +46,7 @@
                                 </td>
                                 <td class="text-center w100">
                                     <input
-                                        data-url="<?php echo base_url("galleries/isActiveSetter/$item->id"); ?>"
+                                        data-url="<?php echo base_url("galleries/galleryVideoIsActiveSetter/$item->id"); ?>"
                                         class="isActive"
                                         type="checkbox"
                                         data-switchery
@@ -56,7 +56,7 @@
                                 </td>
                                 <td class="text-center w200">
                                     <button
-                                        data-url="<?php echo base_url("galleries/delete/$item->id"); ?>"
+                                        data-url="<?php echo base_url("galleries/galleryVideoDelete/$item->id/$item->gallery_id"); ?>"
                                         class="btn btn-sm btn-danger btn-outline remove-btn">
                                         <i class="fa fa-trash"></i> Sil
                                     </button>
