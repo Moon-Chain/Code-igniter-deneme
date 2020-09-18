@@ -186,6 +186,7 @@ class Courses extends CI_Controller
 
         // Kurallar yazilir..
         $this->form_validation->set_rules("title", "Başlık", "required|trim");
+        $this->form_validation->set_rules("event_date", "Eğitim Tarihi", "required|trim");
 
         $this->form_validation->set_message(
             array(
@@ -218,6 +219,7 @@ class Courses extends CI_Controller
                     $data = array(
                         "title" => $this->input->post("title"),
                         "description" => $this->input->post("description"),
+                        "event_date" => $this->input->post("event_date"),
                         "url" => convertToSEO($this->input->post("title")),
                         "img_url" => $uploaded_file,
                     );
@@ -240,6 +242,7 @@ class Courses extends CI_Controller
                 $data = array(
                     "title" => $this->input->post("title"),
                     "description" => $this->input->post("description"),
+                    "event_date" => $this->input->post("event_date"),
                     "url" => convertToSEO($this->input->post("title")),
                 );
             }
