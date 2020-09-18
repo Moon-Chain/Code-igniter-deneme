@@ -1,7 +1,7 @@
-<?php if(empty($item_images)) { ?>
+<?php if(empty($items)) { ?>
 
     <div class="alert alert-info text-center">
-        <p>Burada herhangi bir resim bulunmamaktadır.</a></p>
+        <p>Burada herhangi bir içerik bulunmamaktadır.</a></p>
     </div>
 
 <?php } else { ?>
@@ -11,45 +11,38 @@
         <th class="order"><i class="fa fa-reorder"></i></th>
         <th>#id</th>
         <th>Görsel</th>
-        <th>Resim Adı</th>
+        <th>Dosya Yolu/Adı</th>
         <th>Durumu</th>
-        <th>Kapak</th>
         <th>İşlem</th>
         </thead>
-        <tbody class="sortable" data-url="<?php echo base_url("product/imageRankSetter"); ?>">
+        <tbody class="sortable" data-url="<?php echo base_url("galleries/imageRankSetter"); ?>">
 
-        <?php foreach($item_images as $image){ ?>
+        <?php foreach($items as $item){ ?>
 
-            <tr id="ord-<?php echo $image->id; ?>">
+            <tr id="ord-<?php echo $item->id; ?>">
                 <td class="order"><i class="fa fa-reorder"></i></td>
-                <td class="w50 text-center">#<?php echo $image->id; ?></td>
+                <td class="w50 text-center">#<?php echo $item->id; ?></td>
                 <td class="w100 text-center">
-                    <img width="30" src="<?php echo base_url("uploads/{$viewFolder}/$image->img_url"); ?>" alt="<?php echo $image->img_url; ?>" class="img-responsive">
+                    <?php if($gallery_type == "image"){ ?>
+                        <img width="30" src="<?php echo base_url("$item->url"); ?>" alt="<?php echo $item->url; ?>" class="img-responsive">
+                    <?php }else if($gallery_type == "file"){ ?>
+                        <i class="fa fa-folder fa-2x"></i>
+                    <?php }?>
                 </td>
-                <td><?php echo $image->img_url; ?></td>
+                <td><?php echo $item->url; ?></td>
                 <td class="w100 text-center">
                     <input
-                        data-url="<?php echo base_url("product/imageIsActiveSetter/$image->id"); ?>"
+                        data-url="<?php echo base_url("galleries/imageIsActiveSetter/$item->id"); ?>"
                         class="isActive"
                         type="checkbox"
                         data-switchery
                         data-color="#10c469"
-                        <?php echo ($image->isActive) ? "checked" : ""; ?>
-                    />
-                </td>
-                <td class="w100 text-center">
-                    <input
-                        data-url="<?php echo base_url("product/isCoverSetter/$image->id/$image->product_id"); ?>"
-                        class="isCover"
-                        type="checkbox"
-                        data-switchery
-                        data-color="#ff5b5b"
-                        <?php echo ($image->isCover) ? "checked" : ""; ?>
+                        <?php echo ($item->isActive) ? "checked" : ""; ?>
                     />
                 </td>
                 <td class="w100 text-center">
                     <button
-                        data-url="<?php echo base_url("product/imageDelete/$image->id/$image->product_id"); ?>"
+                        data-url="<?php echo base_url("galleries/imageDelete/$item->id/$item->gallery_id"); ?>"
                         class="btn btn-sm btn-danger btn-outline remove-btn btn-block">
                         <i class="fa fa-trash"></i> Sil
                     </button>
