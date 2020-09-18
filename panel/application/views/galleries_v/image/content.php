@@ -2,11 +2,7 @@
     <div class="col-md-12">
         <div class="widget">
             <div class="widget-body">
-<<<<<<< HEAD
-                <form data-url="<?php echo base_url("galleries/refresh_file_list/$item->id"); ?>" action="<?php echo base_url("galleries/file_upload/$item->id/$item->gallery_type/$item->folder_name"); ?>" id="dropzone" class="dropzone" data-plugin="dropzone" data-options="{ url: '<?php echo base_url("galleries/file_upload/$item->id/$item->gallery_type/$item->folder_name"); ?>'}">
-=======
                 <form data-url="<?php echo base_url("galleries/refresh_file_list/$item->id/$item->gallery_type"); ?>" action="<?php echo base_url("galleries/file_upload/$item->id/$item->gallery_type/$item->folder_name"); ?>" id="dropzone" class="dropzone" data-plugin="dropzone" data-options="{ url: '<?php echo base_url("galleries/file_upload/$item->id/$item->gallery_type/$item->folder_name"); ?>'}">
->>>>>>> 665cd63b4a95249354733052cb60d59a55bbb0b0
                     <div class="dz-message">
                         <h3 class="m-h-lg">Yüklemek istediğiniz dosyaları buraya sürükleyiniz</h3>
                         <p class="m-b-lg text-muted">(Yüklemek için dosyalarınızı sürükleyiniz yada buraya tıklayınız)</p>

@@ -20,10 +20,10 @@
                         <textarea name="description" class="m-0" data-plugin="summernote" data-options="{height: 250}"></textarea>
                     </div>
 
-                        <div class="form-group image_upload_container">
-                            <label>Görsel Seçiniz</label>
-                            <input type="file" name="img_url" class="form-control">
-                        </div>
+                    <div class="form-group image_upload_container">
+                        <label>Görsel Seçiniz</label>
+                        <input type="file" name="img_url" class="form-control">
+                    </div>
 
                     <button type="submit" class="btn btn-primary btn-md btn-outline">Kaydet</button>
                     <a href="<?php echo base_url("references"); ?>" class="btn btn-md btn-danger btn-outline">İptal</a>

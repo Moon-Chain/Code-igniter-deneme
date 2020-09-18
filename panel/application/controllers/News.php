@@ -14,15 +14,13 @@ class News extends CI_Controller
         $this->load->model("news_model");
     }
 
-    public function index()
-    {
+    public function index(){
 
         $viewData = new stdClass();
 
         /** Tablodan Verilerin Getirilmesi.. */
         $items = $this->news_model->get_all(
-            array(),
-            "rank ASC"
+            array(), "rank ASC"
         );
 
         /** View'e gönderilecek Değişkenlerin Set Edilmesi.. */
@@ -33,8 +31,7 @@ class News extends CI_Controller
         $this->load->view("{$viewData->viewFolder}/{$viewData->subViewFolder}/index", $viewData);
     }
 
-    public function new_form()
-    {
+    public function new_form(){
 
         $viewData = new stdClass();
 
@@ -43,10 +40,10 @@ class News extends CI_Controller
         $viewData->subViewFolder = "add";
 
         $this->load->view("{$viewData->viewFolder}/{$viewData->subViewFolder}/index", $viewData);
+
     }
 
-    public function save()
-    {
+    public function save(){
 
         $this->load->library("form_validation");
 
@@ -54,9 +51,9 @@ class News extends CI_Controller
 
         $news_type = $this->input->post("news_type");
 
-        if ($news_type == "image") {
+        if($news_type == "image"){
 
-            if ($_FILES["img_url"]["name"] == "") {
+            if($_FILES["img_url"]["name"] == ""){
 
                 $alert = array(
                     "title" => "İşlem Başarısız",
@@ -71,9 +68,12 @@ class News extends CI_Controller
 
                 die();
             }
-        } else if ($news_type == "video") {
+
+
+        } else if($news_type == "video"){
 
             $this->form_validation->set_rules("video_url", "Video URL", "required|trim");
+
         }
 
         $this->form_validation->set_rules("title", "Başlık", "required|trim");
@@ -87,10 +87,11 @@ class News extends CI_Controller
         // Form Validation Calistirilir..
         $validate = $this->form_validation->run();
 
-        if ($validate) {
+        if($validate){
 
+            if($news_type == "image"){
 
-            if ($news_type == "image") {
+                // Upload Süreci...
 
                 $file_name = convertToSEO(pathinfo($_FILES["img_url"]["name"], PATHINFO_FILENAME)) . "." . pathinfo($_FILES["img_url"]["name"], PATHINFO_EXTENSION);
 
@@ -102,7 +103,7 @@ class News extends CI_Controller
 
                 $upload = $this->upload->do_upload("img_url");
 
-                if ($upload) {
+                if($upload){
 
                     $uploaded_file = $this->upload->data("file_name");
 
@@ -111,48 +112,56 @@ class News extends CI_Controller
                         "description"   => $this->input->post("description"),
                         "url"           => convertToSEO($this->input->post("title")),
                         "news_type"     => $news_type,
-                        "img_url"     => $uploaded_file,
+                        "img_url"       => $uploaded_file,
                         "video_url"     => "#",
                         "rank"          => 0,
                         "isActive"      => 1,
                         "createdAt"     => date("Y-m-d H:i:s")
                     );
+
                 } else {
+
                     $alert = array(
                         "title" => "İşlem Başarısız",
                         "text" => "Görsel yüklenirken bir problem oluştu",
-                        "type" => "error",
+                        "type"  => "error"
                     );
 
                     $this->session->set_flashdata("alert", $alert);
 
                     redirect(base_url("news/new_form"));
+
+                    die();
+
                 }
-            } else if ($news_type == "video") {
+
+            } else if($news_type == "video"){
 
                 $data = array(
                     "title"         => $this->input->post("title"),
                     "description"   => $this->input->post("description"),
                     "url"           => convertToSEO($this->input->post("title")),
                     "news_type"     => $news_type,
-                    "img_url"     => "#",
+                    "img_url"       => "#",
                     "video_url"     => $this->input->post("video_url"),
                     "rank"          => 0,
                     "isActive"      => 1,
                     "createdAt"     => date("Y-m-d H:i:s")
                 );
+
             }
 
             $insert = $this->news_model->add($data);
 
             // TODO Alert sistemi eklenecek...
-            if ($insert) {
+            if($insert){
 
                 $alert = array(
                     "title" => "İşlem Başarılı",
                     "text" => "Kayıt başarılı bir şekilde eklendi",
                     "type"  => "success"
                 );
+
             } else {
 
                 $alert = array(
@@ -166,6 +175,7 @@ class News extends CI_Controller
             $this->session->set_flashdata("alert", $alert);
 
             redirect(base_url("news"));
+
         } else {
 
             $viewData = new stdClass();
@@ -178,10 +188,10 @@ class News extends CI_Controller
 
             $this->load->view("{$viewData->viewFolder}/{$viewData->subViewFolder}/index", $viewData);
         }
+
     }
 
-    public function update_form($id)
-    {
+    public function update_form($id){
 
         $viewData = new stdClass();
 
@@ -191,17 +201,18 @@ class News extends CI_Controller
                 "id"    => $id,
             )
         );
-
+        
         /** View'e gönderilecek Değişkenlerin Set Edilmesi.. */
         $viewData->viewFolder = $this->viewFolder;
         $viewData->subViewFolder = "update";
         $viewData->item = $item;
 
         $this->load->view("{$viewData->viewFolder}/{$viewData->subViewFolder}/index", $viewData);
+
+
     }
 
-    public function update($id)
-    {
+    public function update($id){
 
         $this->load->library("form_validation");
 
@@ -209,9 +220,10 @@ class News extends CI_Controller
 
         $news_type = $this->input->post("news_type");
 
-        if ($news_type == "video") {
+        if($news_type == "video"){
 
             $this->form_validation->set_rules("video_url", "Video URL", "required|trim");
+
         }
 
         $this->form_validation->set_rules("title", "Başlık", "required|trim");
@@ -225,18 +237,19 @@ class News extends CI_Controller
         // Form Validation Calistirilir..
         $validate = $this->form_validation->run();
 
-        if ($validate) {
+        if($validate){
+
+            if($news_type == "image"){
+
+                // Upload Süreci...
 
 
-            if ($news_type == "image") {
-
-
-                if ($_FILES["img_url"]["name"]) {
+                if($_FILES["img_url"]["name"] !== "") {
 
                     $file_name = convertToSEO(pathinfo($_FILES["img_url"]["name"], PATHINFO_FILENAME)) . "." . pathinfo($_FILES["img_url"]["name"], PATHINFO_EXTENSION);
 
                     $config["allowed_types"] = "jpg|jpeg|png";
-                    $config["upload_path"]   = "uploads/$this->viewFolder/";
+                    $config["upload_path"] = "uploads/$this->viewFolder/";
                     $config["file_name"] = $file_name;
 
                     $this->load->library("upload", $config);
@@ -248,59 +261,64 @@ class News extends CI_Controller
                         $uploaded_file = $this->upload->data("file_name");
 
                         $data = array(
-                            "title"         => $this->input->post("title"),
-                            "description"   => $this->input->post("description"),
-                            "url"           => convertToSEO($this->input->post("title")),
-                            "news_type"     => $news_type,
-                            "img_url"     => $uploaded_file,
-                            "video_url"     => "#",
+                            "title" => $this->input->post("title"),
+                            "description" => $this->input->post("description"),
+                            "url" => convertToSEO($this->input->post("title")),
+                            "news_type" => $news_type,
+                            "img_url" => $uploaded_file,
+                            "video_url" => "#",
                         );
+
                     } else {
+
                         $alert = array(
                             "title" => "İşlem Başarısız",
                             "text" => "Görsel yüklenirken bir problem oluştu",
-                            "type" => "error",
+                            "type" => "error"
                         );
 
                         $this->session->set_flashdata("alert", $alert);
 
                         redirect(base_url("news/update_form/$id"));
+
+                        die();
+
                     }
-                }else {
+
+                } else {
 
                     $data = array(
-                        "title"         => $this->input->post("title"),
-                        "description"   => $this->input->post("description"),
-                        "url"           => convertToSEO($this->input->post("title")),
+                        "title" => $this->input->post("title"),
+                        "description" => $this->input->post("description"),
+                        "url" => convertToSEO($this->input->post("title")),
                     );
 
                 }
 
-
-
-                
-            } else if ($news_type == "video") {
+            } else if($news_type == "video"){
 
                 $data = array(
                     "title"         => $this->input->post("title"),
                     "description"   => $this->input->post("description"),
                     "url"           => convertToSEO($this->input->post("title")),
                     "news_type"     => $news_type,
-                    "img_url"     => "#",
-                    "video_url"     => $this->input->post("video_url"),
+                    "img_url"       => "#",
+                    "video_url"     => $this->input->post("video_url")
                 );
+
             }
 
             $update = $this->news_model->update(array("id" => $id), $data);
 
             // TODO Alert sistemi eklenecek...
-            if ($update) {
+            if($update){
 
                 $alert = array(
                     "title" => "İşlem Başarılı",
                     "text" => "Kayıt başarılı bir şekilde güncellendi",
                     "type"  => "success"
                 );
+
             } else {
 
                 $alert = array(
@@ -314,6 +332,7 @@ class News extends CI_Controller
             $this->session->set_flashdata("alert", $alert);
 
             redirect(base_url("news"));
+
         } else {
 
             $viewData = new stdClass();
@@ -333,10 +352,10 @@ class News extends CI_Controller
 
             $this->load->view("{$viewData->viewFolder}/{$viewData->subViewFolder}/index", $viewData);
         }
+
     }
 
-    public function delete($id)
-    {
+    public function delete($id){
 
         $delete = $this->news_model->delete(
             array(
@@ -345,13 +364,14 @@ class News extends CI_Controller
         );
 
         // TODO Alert Sistemi Eklenecek...
-        if ($delete) {
+        if($delete){
 
             $alert = array(
                 "title" => "İşlem Başarılı",
                 "text" => "Kayıt başarılı bir şekilde silindi",
                 "type"  => "success"
             );
+
         } else {
 
             $alert = array(
@@ -359,16 +379,19 @@ class News extends CI_Controller
                 "text" => "Kayıt silme sırasında bir problem oluştu",
                 "type"  => "error"
             );
+
+
         }
 
         $this->session->set_flashdata("alert", $alert);
         redirect(base_url("news"));
+
+
     }
 
-    public function isActiveSetter($id)
-    {
+    public function isActiveSetter($id){
 
-        if ($id) {
+        if($id){
 
             $isActive = ($this->input->post("data") === "true") ? 1 : 0;
 
@@ -383,8 +406,7 @@ class News extends CI_Controller
         }
     }
 
-    public function rankSetter()
-    {
+    public function rankSetter(){
 
 
         $data = $this->input->post("data");
@@ -393,7 +415,7 @@ class News extends CI_Controller
 
         $items = $order["ord"];
 
-        foreach ($items as $rank => $id) {
+        foreach ($items as $rank => $id){
 
             $this->news_model->update(
                 array(
@@ -404,6 +426,9 @@ class News extends CI_Controller
                     "rank"      => $rank
                 )
             );
+
         }
+
     }
+
 }

@@ -12,17 +12,16 @@ class Brands extends CI_Controller
         $this->viewFolder = "brands_v";
 
         $this->load->model("brand_model");
+
     }
 
-    public function index()
-    {
+    public function index(){
 
         $viewData = new stdClass();
 
         /** Tablodan Verilerin Getirilmesi.. */
         $items = $this->brand_model->get_all(
-            array(),
-            "rank ASC"
+            array(), "rank ASC"
         );
 
         /** View'e gönderilecek Değişkenlerin Set Edilmesi.. */
@@ -33,8 +32,7 @@ class Brands extends CI_Controller
         $this->load->view("{$viewData->viewFolder}/{$viewData->subViewFolder}/index", $viewData);
     }
 
-    public function new_form()
-    {
+    public function new_form(){
 
         $viewData = new stdClass();
 
@@ -43,16 +41,16 @@ class Brands extends CI_Controller
         $viewData->subViewFolder = "add";
 
         $this->load->view("{$viewData->viewFolder}/{$viewData->subViewFolder}/index", $viewData);
+
     }
 
-    public function save()
-    {
+    public function save(){
 
         $this->load->library("form_validation");
 
         // Kurallar yazilir..
 
-        if ($_FILES["img_url"]["name"] == "") {
+        if($_FILES["img_url"]["name"] == ""){
 
             $alert = array(
                 "title" => "İşlem Başarısız",
@@ -79,7 +77,7 @@ class Brands extends CI_Controller
         // Form Validation Calistirilir..
         $validate = $this->form_validation->run();
 
-        if ($validate) {
+        if($validate){
 
             // Upload Süreci...
 
@@ -93,7 +91,7 @@ class Brands extends CI_Controller
 
             $upload = $this->upload->do_upload("img_url");
 
-            if ($upload) {
+            if($upload){
 
                 $uploaded_file = $this->upload->data("file_name");
 
@@ -108,13 +106,14 @@ class Brands extends CI_Controller
                 );
 
                 // TODO Alert sistemi eklenecek...
-                if ($insert) {
+                if($insert){
 
                     $alert = array(
                         "title" => "İşlem Başarılı",
                         "text" => "Kayıt başarılı bir şekilde eklendi",
                         "type"  => "success"
                     );
+
                 } else {
 
                     $alert = array(
@@ -123,6 +122,7 @@ class Brands extends CI_Controller
                         "type"  => "error"
                     );
                 }
+
             } else {
 
                 $alert = array(
@@ -136,12 +136,14 @@ class Brands extends CI_Controller
                 redirect(base_url("brands/new_form"));
 
                 die();
+
             }
 
             // İşlemin Sonucunu Session'a yazma işlemi...
             $this->session->set_flashdata("alert", $alert);
 
             redirect(base_url("brands"));
+
         } else {
 
             $viewData = new stdClass();
@@ -153,10 +155,10 @@ class Brands extends CI_Controller
 
             $this->load->view("{$viewData->viewFolder}/{$viewData->subViewFolder}/index", $viewData);
         }
+
     }
 
-    public function update_form($id)
-    {
+    public function update_form($id){
 
         $viewData = new stdClass();
 
@@ -166,21 +168,24 @@ class Brands extends CI_Controller
                 "id"    => $id,
             )
         );
-
+        
         /** View'e gönderilecek Değişkenlerin Set Edilmesi.. */
         $viewData->viewFolder = $this->viewFolder;
         $viewData->subViewFolder = "update";
         $viewData->item = $item;
 
         $this->load->view("{$viewData->viewFolder}/{$viewData->subViewFolder}/index", $viewData);
+
+
     }
 
-    public function update($id)
-    {
+
+    public function update($id){
 
         $this->load->library("form_validation");
 
         // Kurallar yazilir..
+
         $this->form_validation->set_rules("title", "Başlık", "required|trim");
 
         $this->form_validation->set_message(
@@ -192,10 +197,10 @@ class Brands extends CI_Controller
         // Form Validation Calistirilir..
         $validate = $this->form_validation->run();
 
-        if ($validate) {
+        if($validate){
 
-
-            if ($_FILES["img_url"]["name"] !== "") {
+            // Upload Süreci...
+            if($_FILES["img_url"]["name"] !== "") {
 
                 $file_name = convertToSEO(pathinfo($_FILES["img_url"]["name"], PATHINFO_FILENAME)) . "." . pathinfo($_FILES["img_url"]["name"], PATHINFO_EXTENSION);
 
@@ -215,6 +220,7 @@ class Brands extends CI_Controller
                         "title" => $this->input->post("title"),
                         "img_url" => $uploaded_file,
                     );
+
                 } else {
 
                     $alert = array(
@@ -228,24 +234,28 @@ class Brands extends CI_Controller
                     redirect(base_url("brands/update_form/$id"));
 
                     die();
+
                 }
+
             } else {
 
                 $data = array(
                     "title" => $this->input->post("title"),
                 );
+
             }
 
             $update = $this->brand_model->update(array("id" => $id), $data);
 
             // TODO Alert sistemi eklenecek...
-            if ($update) {
+            if($update){
 
                 $alert = array(
                     "title" => "İşlem Başarılı",
                     "text" => "Kayıt başarılı bir şekilde güncellendi",
                     "type"  => "success"
                 );
+
             } else {
 
                 $alert = array(
@@ -259,6 +269,7 @@ class Brands extends CI_Controller
             $this->session->set_flashdata("alert", $alert);
 
             redirect(base_url("brands"));
+
         } else {
 
             $viewData = new stdClass();
@@ -277,10 +288,10 @@ class Brands extends CI_Controller
 
             $this->load->view("{$viewData->viewFolder}/{$viewData->subViewFolder}/index", $viewData);
         }
+
     }
 
-    public function delete($id)
-    {
+    public function delete($id){
 
         $delete = $this->brand_model->delete(
             array(
@@ -289,13 +300,14 @@ class Brands extends CI_Controller
         );
 
         // TODO Alert Sistemi Eklenecek...
-        if ($delete) {
+        if($delete){
 
             $alert = array(
                 "title" => "İşlem Başarılı",
                 "text" => "Kayıt başarılı bir şekilde silindi",
                 "type"  => "success"
             );
+
         } else {
 
             $alert = array(
@@ -303,16 +315,19 @@ class Brands extends CI_Controller
                 "text" => "Kayıt silme sırasında bir problem oluştu",
                 "type"  => "error"
             );
+
+
         }
 
         $this->session->set_flashdata("alert", $alert);
         redirect(base_url("brands"));
+
+
     }
 
-    public function isActiveSetter($id)
-    {
+    public function isActiveSetter($id){
 
-        if ($id) {
+        if($id){
 
             $isActive = ($this->input->post("data") === "true") ? 1 : 0;
 
@@ -327,8 +342,7 @@ class Brands extends CI_Controller
         }
     }
 
-    public function rankSetter()
-    {
+    public function rankSetter(){
 
 
         $data = $this->input->post("data");
@@ -337,7 +351,7 @@ class Brands extends CI_Controller
 
         $items = $order["ord"];
 
-        foreach ($items as $rank => $id) {
+        foreach ($items as $rank => $id){
 
             $this->brand_model->update(
                 array(
@@ -348,6 +362,9 @@ class Brands extends CI_Controller
                     "rank"      => $rank
                 )
             );
+
         }
+
     }
+
 }
