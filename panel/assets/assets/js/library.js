@@ -1,4 +1,4 @@
- var LIBS = {
+var LIBS = {
 	// Chart libraries
 	plot: [
 		"../panel/assets/libs/misc/flot/jquery.flot.min.js",
@@ -58,8 +58,8 @@
 		"../panel/assets/libs/misc/jvectormap/maps/jquery-jvectormap-africa-mill.js"
 	],
 	summernote: [
-		"../panel/assets/libs/bower/summernote/dist/summernote.css",
-		"../panel/assets/libs/bower/summernote/dist/summernote.min.js"
+		"http://localhost/cms/panel/assets/libs/bower/summernote/dist/summernote.css",
+		"http://localhost/cms/panel/assets/libs/bower/summernote/dist/summernote.min.js"
 	],
 	DataTable: [
 		"../panel/assets/libs/misc/datatables/datatables.min.css",
