@@ -171,37 +171,9 @@ class Userop extends CI_Controller {
                 $this->load->model("emailsettings_model");
 
                 $this->load->helper("string");
-
                 $temp_password = random_string();
 
-                $email_settings = $this->emailsettings_model->get(
-                    array(
-                        "isActive"  => 1
-                    )
-                );
-
-                $config = array(
-
-                    "protocol"   => $email_settings->protocol,
-                    "smtp_host"  => $email_settings->host,
-                    "smtp_port"  => $email_settings->port,
-                    "smtp_user"  => $email_settings->user,
-                    "smtp_pass"  => $email_settings->password,
-                    "starttls"   => true,
-                    "charset"    => "utf-8",
-                    "mailtype"   => "html",
-                    "wordwrap"   => true,
-                    "newline"    => "\r\n"
-                );
-
-                $this->load->library("email", $config);
-
-                $this->email->from($email_settings->from, $email_settings->user_name);
-                $this->email->to($user->email);
-                $this->email->subject("Şifremi Unuttum");
-                $this->email->message("CMS'e geçici olarak <b>{$temp_password}</b> şifresiyle giriş yapabilirsiniz.");
-
-                $send = $this->email->send();
+                $send = send_emails($user->email, "Şifremi unuttum", "CMS' e geçici olarak <b>{$temp_password}<b> şifresiyle giriş yapabilirsiniz.");
 
                 if($send){
                     echo "E-posta başarılı bir şekilde gonderilmiştir..";
