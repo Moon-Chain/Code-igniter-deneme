@@ -1,6 +1,6 @@
 <?php
 
-class Users extends CI_Controller
+class Emailsettings extends CI_Controller
 {
     public $viewFolder = "";
 
@@ -9,9 +9,9 @@ class Users extends CI_Controller
 
         parent::__construct();
 
-        $this->viewFolder = "users_v";
+        $this->viewFolder = "email_settings_v";
 
-        $this->load->model("user_model");
+        $this->load->model("emailsettings_model");
 
         if(!get_active_user()){
             redirect(base_url("login"));
@@ -24,7 +24,7 @@ class Users extends CI_Controller
         $viewData = new stdClass();
 
         /** Tablodan Verilerin Getirilmesi.. */
-        $items = $this->user_model->get_all(
+        $items = $this->emailsettings_model->get_all(
             array()
         );
 
@@ -53,18 +53,19 @@ class Users extends CI_Controller
         $this->load->library("form_validation");
 
         // Kurallar yazilir..
-        $this->form_validation->set_rules("user_name", "Kullanıcı Adı", "required|trim|is_unique[users.user_name]");
-        $this->form_validation->set_rules("full_name", "Ad Soyad", "required|trim");
-        $this->form_validation->set_rules("email", "E-posta", "required|trim|valid_email|is_unique[users.email]");
-        $this->form_validation->set_rules("password", "Şifre", "required|trim|min_length[6]|max_length[8]");
-        $this->form_validation->set_rules("re_password", "Şifre Tekrar", "required|trim|min_length[6]|max_length[8]|matches[password]");
+        $this->form_validation->set_rules("protocol", "Protokol Numarası", "required|trim");
+        $this->form_validation->set_rules("host", "E-posta Sunucusu", "required|trim");
+        $this->form_validation->set_rules("port", "Port Numarası", "required|trim");
+        $this->form_validation->set_rules("user_name", "Kullanıcı Adı", "required|trim");
+        $this->form_validation->set_rules("user", "E-posta (User)", "required|trim|valid_email");
+        $this->form_validation->set_rules("from", "Kimden Gidecek (from)", "required|trim|valid_email");
+        $this->form_validation->set_rules("to", "Kime Gidecek (to)", "required|trim|valid_email");
+        $this->form_validation->set_rules("password", "Şifre", "required|trim");
 
         $this->form_validation->set_message(
             array(
                 "required"    => "<b>{field}</b> alanı doldurulmalıdır",
                 "valid_email" => "Lütfen geçerli bir e-posta adresi giriniz",
-                "is_unique"   => "<b>{field}</b> alanı daha önceden kullanılmış",
-                "matches"     => "Şifreler birbirlerini tutmuyor"
             )
         );
 
@@ -73,12 +74,16 @@ class Users extends CI_Controller
 
         if($validate){
 
-            $insert = $this->user_model->add(
+            $insert = $this->emailsettings_model->add(
                 array(
+                    "protocol"      => $this->input->post("protocol"),
+                    "host"          => $this->input->post("host"),
+                    "port"          => $this->input->post("port"),
                     "user_name"     => $this->input->post("user_name"),
-                    "full_name"     => $this->input->post("full_name"),
-                    "email"         => $this->input->post("email"),
-                    "password"      => md5($this->input->post("password")),
+                    "user"          => $this->input->post("user"),
+                    "from"          => $this->input->post("from"),
+                    "to"            => $this->input->post("to"),
+                    "password"      => $this->input->post("password"),
                     "isActive"      => 1,
                     "createdAt"     => date("Y-m-d H:i:s")
                 )
@@ -102,10 +107,9 @@ class Users extends CI_Controller
                 );
             }
 
-
             $this->session->set_flashdata("alert", $alert);
 
-            redirect(base_url("users"));
+            redirect(base_url("emailsettings"));
 
             die();
 
@@ -128,7 +132,7 @@ class Users extends CI_Controller
         $viewData = new stdClass();
 
         /** Tablodan Verilerin Getirilmesi.. */
-        $item = $this->user_model->get(
+        $item = $this->emailsettings_model->get(
             array(
                 "id"    => $id,
             )
@@ -144,54 +148,24 @@ class Users extends CI_Controller
 
     }
 
-    public function update_password_form($id){
-
-        $viewData = new stdClass();
-
-        /** Tablodan Verilerin Getirilmesi.. */
-        $item = $this->user_model->get(
-            array(
-                "id"    => $id,
-            )
-        );
-
-        /** View'e gönderilecek Değişkenlerin Set Edilmesi.. */
-        $viewData->viewFolder = $this->viewFolder;
-        $viewData->subViewFolder = "password";
-        $viewData->item = $item;
-
-        $this->load->view("{$viewData->viewFolder}/{$viewData->subViewFolder}/index", $viewData);
-
-
-    }
-
     public function update($id){
 
         $this->load->library("form_validation");
 
-        $oldUser = $this->user_model->get(
-            array(
-                "id"    => $id
-            )
-        );
-
-        if($oldUser->user_name != $this->input->post("user_name")){
-            $this->form_validation->set_rules("user_name", "Kullanıcı Adı", "required|trim|is_unique[users.user_name]");
-        }
-
-        if($oldUser->email != $this->input->post("email")){
-            $this->form_validation->set_rules("email", "E-posta", "required|trim|valid_email|is_unique[users.email]");
-        }
-
-
-        $this->form_validation->set_rules("full_name", "Ad Soyad", "required|trim");
+        $this->form_validation->set_rules("protocol", "Protokol Numarası", "required|trim");
+        $this->form_validation->set_rules("host", "E-posta Sunucusu", "required|trim");
+        $this->form_validation->set_rules("port", "Port Numarası", "required|trim");
+        $this->form_validation->set_rules("user_name", "Kullanıcı Adı", "required|trim");
+        $this->form_validation->set_rules("user", "E-posta (User)", "required|trim|valid_email");
+        $this->form_validation->set_rules("from", "Kimden Gidecek (from)", "required|trim|valid_email");
+        $this->form_validation->set_rules("to", "Kime Gidecek (to)", "required|trim|valid_email");
+        $this->form_validation->set_rules("password", "Şifre", "required|trim");
 
 
         $this->form_validation->set_message(
             array(
                 "required"    => "<b>{field}</b> alanı doldurulmalıdır",
                 "valid_email" => "Lütfen geçerli bir e-posta adresi giriniz",
-                "is_unique"   => "<b>{field}</b> alanı daha önceden kullanılmış",
             )
         );
 
@@ -201,12 +175,17 @@ class Users extends CI_Controller
         if($validate){
 
             // Upload Süreci...
-            $update = $this->user_model->update(
+            $update = $this->emailsettings_model->update(
                 array("id" => $id),
                 array(
+                    "protocol"      => $this->input->post("protocol"),
+                    "host"          => $this->input->post("host"),
+                    "port"          => $this->input->post("port"),
                     "user_name"     => $this->input->post("user_name"),
-                    "full_name"     => $this->input->post("full_name"),
-                    "email"         => $this->input->post("email"),
+                    "user"          => $this->input->post("user"),
+                    "from"          => $this->input->post("from"),
+                    "to"            => $this->input->post("to"),
+                    "password"      => $this->input->post("password"),
                 )
             );
 
@@ -231,7 +210,7 @@ class Users extends CI_Controller
             // İşlemin Sonucunu Session'a yazma işlemi...
             $this->session->set_flashdata("alert", $alert);
 
-            redirect(base_url("users"));
+            redirect(base_url("emailsettings"));
 
         } else {
 
@@ -243,78 +222,7 @@ class Users extends CI_Controller
             $viewData->form_error = true;
 
             /** Tablodan Verilerin Getirilmesi.. */
-            $viewData->item = $this->user_model->get(
-                array(
-                    "id"    => $id,
-                )
-            );
-
-            $this->load->view("{$viewData->viewFolder}/{$viewData->subViewFolder}/index", $viewData);
-        }
-
-    }
-
-    public function update_password($id){
-
-        $this->load->library("form_validation");
-
-        $this->form_validation->set_rules("password", "Şifre", "required|trim|min_length[6]|max_length[8]");
-        $this->form_validation->set_rules("re_password", "Şifre Tekrar", "required|trim|min_length[6]|max_length[8]|matches[password]");
-
-        $this->form_validation->set_message(
-            array(
-                "required"    => "<b>{field}</b> alanı doldurulmalıdır",
-                "matches"     => "Şifreler birbirlerini tutmuyor"
-            )
-        );
-
-        // Form Validation Calistirilir..
-        $validate = $this->form_validation->run();
-
-        if($validate){
-
-            // Upload Süreci...
-            $update = $this->user_model->update(
-                array("id" => $id),
-                array(
-                    "password"      => md5($this->input->post("password")),
-                )
-            );
-
-            // TODO Alert sistemi eklenecek...
-            if($update){
-
-                $alert = array(
-                    "title" => "İşlem Başarılı",
-                    "text" => "Şifreniz başarılı bir şekilde güncellendi",
-                    "type"  => "success"
-                );
-
-            } else {
-
-                $alert = array(
-                    "title" => "İşlem Başarısız",
-                    "text" => "Şifre Güncelleme sırasında bir problem oluştu",
-                    "type"  => "error"
-                );
-            }
-
-            // İşlemin Sonucunu Session'a yazma işlemi...
-            $this->session->set_flashdata("alert", $alert);
-
-            redirect(base_url("users"));
-
-        } else {
-
-            $viewData = new stdClass();
-
-            /** View'e gönderilecek Değişkenlerin Set Edilmesi.. */
-            $viewData->viewFolder = $this->viewFolder;
-            $viewData->subViewFolder = "password";
-            $viewData->form_error = true;
-
-            /** Tablodan Verilerin Getirilmesi.. */
-            $viewData->item = $this->user_model->get(
+            $viewData->item = $this->emailsettings_model->get(
                 array(
                     "id"    => $id,
                 )
@@ -327,7 +235,7 @@ class Users extends CI_Controller
 
     public function delete($id){
 
-        $delete = $this->user_model->delete(
+        $delete = $this->emailsettings_model->delete(
             array(
                 "id"    => $id
             )
@@ -354,7 +262,7 @@ class Users extends CI_Controller
         }
 
         $this->session->set_flashdata("alert", $alert);
-        redirect(base_url("users"));
+        redirect(base_url("emailsettings"));
 
 
     }
@@ -365,7 +273,7 @@ class Users extends CI_Controller
 
             $isActive = ($this->input->post("data") === "true") ? 1 : 0;
 
-            $this->user_model->update(
+            $this->emailsettings_model->update(
                 array(
                     "id"    => $id
                 ),
