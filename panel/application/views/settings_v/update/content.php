@@ -166,7 +166,7 @@
             </div><!-- .widget -->
 
             <button type="submit" class="btn btn-primary btn-md">Güncelle</button>
-            <a href="<?php echo base_url("users"); ?>" class="btn btn-md btn-danger">İptal</a>
+            <a href="<?php echo base_url("settings"); ?>" class="btn btn-md btn-danger">İptal</a>
 
         </form>
     </div><!-- END column -->
