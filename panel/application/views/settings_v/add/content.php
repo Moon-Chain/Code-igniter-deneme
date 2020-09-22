@@ -1,12 +1,12 @@
 <div class="row">
     <div class="col-md-12">
         <h4 class="m-b-lg">
-            Yeni Kullanıcı Ekle
+            Site Ayarı Ekle
         </h4>
     </div>
 
     <div class="col-md-12">
-        <form action="<?php echo base_url("users/save"); ?>" method="post">
+        <form action="<?php echo base_url("settings/save"); ?>" method="post" enctype="multipart/form-data">
 
             <div class="widget">
                 <div class="m-b-lg nav-tabs-horizontal">
@@ -47,28 +47,19 @@
 
                                 <div class="form-group col-md-4">
                                     <label>Telefon 2</label>
-                                    <input class="form-control" placeholder="Diğer telefon numaranız (opsiyonel)" name="phone_2" value="<?php echo isset($form_error) ? set_value("phone_2") : ""; ?>">
-                                    <?php if (isset($form_error)) { ?>
-                                        <small class="pull-right input-form-error"> <?php echo form_error("phone_2"); ?></small>
-                                    <?php } ?>
+                                    <input class="form-control" placeholder="Diğer telefon numaranız (opsiyonel)" name="phone_2">
                                 </div>
                             </div>
 
                             <div class="row">
                                 <div class="form-group col-md-4">
                                     <label>Fax 1</label>
-                                    <input class="form-control" placeholder="Fax numaranız" name="fax_1" value="<?php echo isset($form_error) ? set_value("fax_1") : ""; ?>">
-                                    <?php if (isset($form_error)) { ?>
-                                        <small class="pull-right input-form-error"> <?php echo form_error("fax_1"); ?></small>
-                                    <?php } ?>
+                                    <input class="form-control" placeholder="Fax numaranız" name="fax_1">
                                 </div>
 
                                 <div class="form-group col-md-4">
                                     <label>Fax 2</label>
-                                    <input class="form-control" placeholder="Diğer fax numaranız (opsiyonel)" name="fax_2" value="<?php echo isset($form_error) ? set_value("fax_2") : ""; ?>">
-                                    <?php if (isset($form_error)) { ?>
-                                        <small class="pull-right input-form-error"> <?php echo form_error("fax_2"); ?></small>
-                                    <?php } ?>
+                                    <input class="form-control" placeholder="Diğer fax numaranız (opsiyonel)" name="fax_2">
                                 </div>
 
                             </div>
@@ -117,7 +108,7 @@
                             <div class="row">
                                 <div class="form-group col-md-8">
                                     <label>E-Posta adresiniz</label>
-                                    <input class="form-control" placeholder="E-Posta adresiniz" name="email" value="<?php echo isset($form_error) ? set_value("company_name") : ""; ?>">
+                                    <input class="form-control" placeholder="E-Posta adresiniz" name="email" value="<?php echo isset($form_error) ? set_value("email") : ""; ?>">
                                     <?php if (isset($form_error)) { ?>
                                         <small class="pull-right input-form-error"> <?php echo form_error("email"); ?></small>
                                     <?php } ?>
@@ -127,18 +118,12 @@
                             <div class="row">
                                 <div class="form-group col-md-4">
                                     <label>Facebook</label>
-                                    <input class="form-control" placeholder="Telefon numaranız" name="facebook" value="<?php echo isset($form_error) ? set_value("facebook") : ""; ?>">
-                                    <?php if (isset($form_error)) { ?>
-                                        <small class="pull-right input-form-error"> <?php echo form_error("facebook"); ?></small>
-                                    <?php } ?>
+                                    <input class="form-control" placeholder="Facebook Adresiniz" name="facebook" value="<?php echo isset($form_error) ? set_value("facebook") : ""; ?>">
                                 </div>
 
                                 <div class="form-group col-md-4">
                                     <label>Twitter</label>
-                                    <input class="form-control" placeholder="Diğer telefon numaranız (opsiyonel)" name="twitter" value="<?php echo isset($form_error) ? set_value("twitter") : ""; ?>">
-                                    <?php if (isset($form_error)) { ?>
-                                        <small class="pull-right input-form-error"> <?php echo form_error("twitter"); ?></small>
-                                    <?php } ?>
+                                    <input class="form-control" placeholder="Twitter Adresiniz" name="twitter" value="<?php echo isset($form_error) ? set_value("twitter") : ""; ?>">
                                 </div>
                             </div>
 
@@ -146,17 +131,11 @@
                                 <div class="form-group col-md-4">
                                     <label>Instagram</label>
                                     <input class="form-control" placeholder="Instagram Adresiniz" name="instagram" value="<?php echo isset($form_error) ? set_value("instagram") : ""; ?>">
-                                    <?php if (isset($form_error)) { ?>
-                                        <small class="pull-right input-form-error"> <?php echo form_error("instagram"); ?></small>
-                                    <?php } ?>
                                 </div>
 
                                 <div class="form-group col-md-4">
                                     <label>Twitter</label>
                                     <input class="form-control" placeholder="Linkedin Adresiniz" name="linkedin" value="<?php echo isset($form_error) ? set_value("linkedin") : ""; ?>">
-                                    <?php if (isset($form_error)) { ?>
-                                        <small class="pull-right input-form-error"> <?php echo form_error("linkedin"); ?></small>
-                                    <?php } ?>
                                 </div>
                             </div>
 
@@ -165,7 +144,6 @@
                         <div role="tabpanel" class="tab-pane fade" id="tab-7">
                             <div class="row">
                                 <div class="col-md-12">
-                                    <label>Vizyonumuz</label>
                                     <div class="form-group image_upload_container">
                                         <label>Görsel Seçiniz</label>
                                         <input type="file" name="logo" class="form-control">
