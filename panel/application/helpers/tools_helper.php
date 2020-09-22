@@ -29,7 +29,11 @@ function get_active_user(){
 
 }
 
+<<<<<<< HEAD
 function send_emails($toEmail = "", $subject = "", $message = ""){
+=======
+function send_email($toEmail = "", $subject = "", $message = ""){
+>>>>>>> e92b3d191e96a51870c8ecd36003813a3788544c
     $t = &get_instance();
 
     $t->load->model("emailsettings_model");
