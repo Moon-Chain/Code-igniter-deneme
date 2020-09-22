@@ -168,12 +168,10 @@ class Userop extends CI_Controller {
 
             if($user){
 
-                $this->load->model("emailsettings_model");
-
                 $this->load->helper("string");
                 $temp_password = random_string();
 
-                $send = send_emails($user->email, "Şifremi unuttum", "CMS' e geçici olarak <b>{$temp_password}<b> şifresiyle giriş yapabilirsiniz.");
+                $send = send_email($user->email, "Şifremi Unuttum", "CMS'e geçici olarak <b>{$temp_password}</b> şifresiyle giriş yapabilirsiniz");
 
                 if($send){
                     echo "E-posta başarılı bir şekilde gonderilmiştir..";
@@ -217,7 +215,6 @@ class Userop extends CI_Controller {
                     die();
 
                 }
-
 
             } else {
 

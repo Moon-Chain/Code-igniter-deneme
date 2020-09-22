@@ -122,7 +122,7 @@ class Settings extends CI_Controller
                         "instagram"     => $this->input->post("instagram"),
                         "linkedin"      => $this->input->post("linkedin"),
                         "logo"          => $uploaded_file,
-                        "createdAt"     => date("Y-m-d H:i:s"),
+                        "createdAt"     => date("Y-m-d H:i:s")
                     )
                 );
 
@@ -255,7 +255,7 @@ class Settings extends CI_Controller
                         "instagram"     => $this->input->post("instagram"),
                         "linkedin"      => $this->input->post("linkedin"),
                         "logo"          => $uploaded_file,
-                        "updatedAt"     => date("Y-m-d H:i:s"),
+                        "updatedAt"     => date("Y-m-d H:i:s")
                     );
 
                 } else {
@@ -291,9 +291,8 @@ class Settings extends CI_Controller
                     "twitter"       => $this->input->post("twitter"),
                     "instagram"     => $this->input->post("instagram"),
                     "linkedin"      => $this->input->post("linkedin"),
-                    "updatedAt"     => date("Y-m-d H:i:s"),
+                    "updatedAt"     => date("Y-m-d H:i:s")
                 );
-
 
             }
 
@@ -317,6 +316,12 @@ class Settings extends CI_Controller
                 );
             }
 
+
+            // Session Update İşlemi
+
+            $settings = $this->settings_model->get();
+            $this->session->set_userdata("settings", $settings);
+
             // İşlemin Sonucunu Session'a yazma işlemi...
             $this->session->set_flashdata("alert", $alert);
 
@@ -332,7 +337,7 @@ class Settings extends CI_Controller
             $viewData->form_error = true;
 
             /** Tablodan Verilerin Getirilmesi.. */
-            $viewData->item = $this->brand_model->get(
+            $viewData->item = $this->settings_model->get(
                 array(
                     "id"    => $id,
                 )

@@ -29,14 +29,16 @@ function get_active_user(){
 
 }
 
-function send_emails($toEmail = "", $subject = "", $message = ""){
+
+function send_email($toEmail = "", $subject = "", $message = ""){
+    
     $t = &get_instance();
 
     $t->load->model("emailsettings_model");
 
     $email_settings = $t->emailsettings_model->get(
         array(
-            "isActive" => 1,
+            "isActive"  => 1
         )
     );
 
@@ -58,9 +60,26 @@ function send_emails($toEmail = "", $subject = "", $message = ""){
 
     $t->email->from($email_settings->from, $email_settings->user_name);
     $t->email->to($toEmail);
-    $t->email->subject("Şifremi Unuttum");
+    $t->email->subject($subject);
     $t->email->message($message);
 
     return $t->email->send();
+
+}
+
+function get_settings(){
+
+    $t = &get_instance();
+
+    $t->load->model("settings_model");
+
+    if($t->session->userdata("settings")){
+        $settings = $t->session->userdata("settings");
+    } else {
+        $settings = $t->settings_model->get();
+        $t->session->set_userdata("settings", $settings);
+    }
+
+    return $settings;
 
 }
