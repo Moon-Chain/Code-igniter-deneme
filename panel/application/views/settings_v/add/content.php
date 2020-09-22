@@ -18,12 +18,13 @@
                         <li role="presentation"><a href="#tab-4" aria-controls="tab-4" role="tab" data-toggle="tab">Misyon</a></li>
                         <li role="presentation"><a href="#tab-5" aria-controls="tab-5" role="tab" data-toggle="tab">Vizyon</a></li>
                         <li role="presentation"><a href="#tab-6" aria-controls="tab-6" role="tab" data-toggle="tab">Sosyal Medya</a></li>
+                        <li role="presentation"><a href="#tab-7" aria-controls="tab-7" role="tab" data-toggle="tab">Logo</a></li>
                     </ul><!-- .nav-tabs -->
 
                     <!-- Tab panes -->
                     <div class="tab-content p-md">
                         <div role="tabpanel" class="tab-pane in active fade" id="tab-1">
-                            <h4 class="m-b-md">First Tab Content</h4>
+                            <h4 class="m-b-md">Site Bilgileri</h4>
 
                             <div class="row">
                                 <div class="form-group col-md-8">
@@ -71,10 +72,6 @@
                                 </div>
 
                             </div>
-
-
-
-
                         </div><!-- .tab-pane  -->
 
                         <div role="tabpanel" class="tab-pane fade" id="tab-2">
@@ -86,8 +83,8 @@
                             </div>
                         </div><!-- .tab-pane  -->
 
-                        
-                        <div role="tabpanel" class="tab-pane fade" id="tab-2">
+
+                        <div role="tabpanel" class="tab-pane fade" id="tab-3">
                             <div class="row">
                                 <div class="col-md-12">
                                     <label>Hakkımızda</label>
@@ -96,7 +93,7 @@
                             </div>
                         </div><!-- .tab-pane  -->
 
-                        <div role="tabpanel" class="tab-pane fade" id="tab-2">
+                        <div role="tabpanel" class="tab-pane fade" id="tab-4">
                             <div class="row">
                                 <div class="col-md-12">
                                     <label>Misyonumuz</label>
@@ -104,12 +101,75 @@
                                 </div>
                             </div>
                         </div><!-- .tab-pane  -->
-                        
-                        <div role="tabpanel" class="tab-pane fade" id="tab-2">
+
+                        <div role="tabpanel" class="tab-pane fade" id="tab-5">
                             <div class="row">
                                 <div class="col-md-12">
                                     <label>Vizyonumuz</label>
                                     <textarea name="vision" class="m-0" data-plugin="summernote" data-options="{height: 250}"></textarea>
+                                </div>
+                            </div>
+                        </div><!-- .tab-pane  -->
+
+                        <div role="tabpanel" class="tab-pane fade" id="tab-6">
+                            <h4 class="m-b-md">Sosyal Medya</h4>
+
+                            <div class="row">
+                                <div class="form-group col-md-8">
+                                    <label>E-Posta adresiniz</label>
+                                    <input class="form-control" placeholder="E-Posta adresiniz" name="email" value="<?php echo isset($form_error) ? set_value("company_name") : ""; ?>">
+                                    <?php if (isset($form_error)) { ?>
+                                        <small class="pull-right input-form-error"> <?php echo form_error("email"); ?></small>
+                                    <?php } ?>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="form-group col-md-4">
+                                    <label>Facebook</label>
+                                    <input class="form-control" placeholder="Telefon numaranız" name="facebook" value="<?php echo isset($form_error) ? set_value("facebook") : ""; ?>">
+                                    <?php if (isset($form_error)) { ?>
+                                        <small class="pull-right input-form-error"> <?php echo form_error("facebook"); ?></small>
+                                    <?php } ?>
+                                </div>
+
+                                <div class="form-group col-md-4">
+                                    <label>Twitter</label>
+                                    <input class="form-control" placeholder="Diğer telefon numaranız (opsiyonel)" name="twitter" value="<?php echo isset($form_error) ? set_value("twitter") : ""; ?>">
+                                    <?php if (isset($form_error)) { ?>
+                                        <small class="pull-right input-form-error"> <?php echo form_error("twitter"); ?></small>
+                                    <?php } ?>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="form-group col-md-4">
+                                    <label>Instagram</label>
+                                    <input class="form-control" placeholder="Instagram Adresiniz" name="instagram" value="<?php echo isset($form_error) ? set_value("instagram") : ""; ?>">
+                                    <?php if (isset($form_error)) { ?>
+                                        <small class="pull-right input-form-error"> <?php echo form_error("instagram"); ?></small>
+                                    <?php } ?>
+                                </div>
+
+                                <div class="form-group col-md-4">
+                                    <label>Twitter</label>
+                                    <input class="form-control" placeholder="Linkedin Adresiniz" name="linkedin" value="<?php echo isset($form_error) ? set_value("linkedin") : ""; ?>">
+                                    <?php if (isset($form_error)) { ?>
+                                        <small class="pull-right input-form-error"> <?php echo form_error("linkedin"); ?></small>
+                                    <?php } ?>
+                                </div>
+                            </div>
+
+                        </div><!-- .tab-pane  -->
+
+                        <div role="tabpanel" class="tab-pane fade" id="tab-7">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <label>Vizyonumuz</label>
+                                    <div class="form-group image_upload_container">
+                                        <label>Görsel Seçiniz</label>
+                                        <input type="file" name="logo" class="form-control">
+                                    </div>
                                 </div>
                             </div>
                         </div><!-- .tab-pane  -->
@@ -124,13 +184,4 @@
         </form>
     </div><!-- END column -->
 
-
-    <div class="col-md-12">
-        <div class="widget">
-            <div class="widget-body">
-
-
-            </div><!-- .widget-body -->
-        </div><!-- .widget -->
-    </div><!-- END column -->
 </div>
