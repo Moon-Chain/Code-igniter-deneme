@@ -76,8 +76,19 @@ function get_settings(){
     if($t->session->userdata("settings")){
         $settings = $t->session->userdata("settings");
     } else {
+
         $settings = $t->settings_model->get();
+
+        if(!$settings) {
+
+            $settings = new stdClass();
+            $settings->company_name = "kablosuzkedi";
+            $settings->logo         = "default";
+            
+        }
+
         $t->session->set_userdata("settings", $settings);
+
     }
 
     return $settings;
