@@ -132,7 +132,7 @@ class Settings extends CI_Controller
                     $alert = array(
                         "title" => "İşlem Başarılı",
                         "text" => "Kayıt başarılı bir şekilde eklendi",
-                        "type"  => "success",
+                        "type"  => "success"
                     );
 
                 } else {
@@ -140,7 +140,7 @@ class Settings extends CI_Controller
                     $alert = array(
                         "title" => "İşlem Başarısız",
                         "text" => "Kayıt Ekleme sırasında bir problem oluştu",
-                        "type"  => "error",
+                        "type"  => "error"
                     );
                 }
 
@@ -149,7 +149,7 @@ class Settings extends CI_Controller
                 $alert = array(
                     "title" => "İşlem Başarısız",
                     "text" => "Görsel yüklenirken bir problem oluştu",
-                    "type"  => "error",
+                    "type"  => "error"
                 );
 
                 $this->session->set_flashdata("alert", $alert);
