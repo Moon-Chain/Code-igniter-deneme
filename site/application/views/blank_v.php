@@ -1,89 +1,101 @@
-<?php
-defined('BASEPATH') OR exit('No direct script access allowed');
-?><!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html>
+<!--[if IE 9]> <html lang="tr" class="ie9"> <![endif]-->
+<!--[if gt IE 9]> <html lang="tr" class="ie"> <![endif]-->
+<!--[if !IE]><!-->
+<html dir="ltr" lang="tr">
+<!--<![endif]-->
+
 <head>
-	<meta charset="utf-8">
-	<title>Welcome to CodeIgniter</title>
-
-	<style type="text/css">
-
-	::selection { background-color: #E13300; color: white; }
-	::-moz-selection { background-color: #E13300; color: white; }
-
-	body {
-		background-color: #fff;
-		margin: 40px;
-		font: 13px/20px normal Helvetica, Arial, sans-serif;
-		color: #4F5155;
-	}
-
-	a {
-		color: #003399;
-		background-color: transparent;
-		font-weight: normal;
-	}
-
-	h1 {
-		color: #444;
-		background-color: transparent;
-		border-bottom: 1px solid #D0D0D0;
-		font-size: 19px;
-		font-weight: normal;
-		margin: 0 0 14px 0;
-		padding: 14px 15px 10px 15px;
-	}
-
-	code {
-		font-family: Consolas, Monaco, Courier New, Courier, monospace;
-		font-size: 12px;
-		background-color: #f9f9f9;
-		border: 1px solid #D0D0D0;
-		color: #002166;
-		display: block;
-		margin: 14px 0 14px 0;
-		padding: 12px 10px 12px 10px;
-	}
-
-	#body {
-		margin: 0 15px 0 15px;
-	}
-
-	p.footer {
-		text-align: right;
-		font-size: 11px;
-		border-top: 1px solid #D0D0D0;
-		line-height: 32px;
-		padding: 0 10px 0 10px;
-		margin: 20px 0 0 0;
-	}
-
-	#container {
-		margin: 10px;
-		border: 1px solid #D0D0D0;
-		box-shadow: 0 0 8px #D0D0D0;
-	}
-	</style>
+	<?php $this->load->view("includes/head"); ?>
 </head>
-<body>
 
-<div id="container">
-	<h1>Welcome to CodeIgniter!</h1>
+<body class="transparent-header front-page page-loader-5">
+	<div class="scrollToTop circle"><i class="icon-up-open-big"></i></div>
 
-	<div id="body">
-		<p>The page you are looking at is being generated dynamically by CodeIgniter.</p>
+	<div class="page-wrapper">
+		<?php $this->load->view("includes/header"); ?>
 
-		<p>If you would like to edit this page you'll find it located at:</p>
-		<code>application/views/welcome_message.php</code>
+		<!-- section start -->
+		<!-- ================ -->
+		<section class="pv-40 clearfix">
+        <div class="container">
+          <h3 class="title space-top logo-font text-center text-default">The Beauty</h3>
+          <div class="separator"></div>
+          <p class="text-center">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ea aut voluptates quia <br> eveniet velit inventore, corporis, rem laboriosam. Ex ipsam nihil, quos dicta atque alias vel sunt. Libero, molestiae quidem?</p>
+          <br>
+          <div class="row grid-space-10">
+            <div class="col-md-6 col-lg-3">
+              <div class="pv-30 ph-20 white-bg feature-box bordered text-center">
+                <span class="icon default-bg circle"><i class="fa fa-plus-square"></i></span>
+                <h3>Since 1930</h3>
+                <div class="separator clearfix"></div>
+                <p>Voluptatem ad provident non repudiandae beatae cupiditate amet reiciendis lorem ipsum dolor sit amet, consectetur.</p>
+                <a href="#" class="btn btn-default btn-animated">Read More <i class="fa fa-angle-double-right"></i></a>
+              </div>
+            </div>
+            <div class="col-md-6 col-lg-3">
+              <div class="pv-30 ph-20 white-bg feature-box bordered text-center">
+                <span class="icon default-bg circle"><i class="fa fa-hospital-o"></i></span>
+                <h3>Apointments</h3>
+                <div class="separator clearfix"></div>
+                <p>Iure sequi unde hic. Sapiente quaerat sequi inventore veritatis cumque lorem ipsum dolor sit amet, consectetur.</p>
+                <a href="#" class="btn btn-default btn-animated">Make An Apointment <i class="pl-1 fa fa-calendar"></i></a>
+              </div>
+            </div>
+            <div class="col-md-6 col-lg-3">
+              <div class="pv-30 ph-20 default-bg feature-box bordered text-center">
+                <span class="icon dark-bg circle"><i class="fa fa-hand-peace-o"></i></span>
+                <h3>Special Deals</h3>
+                <div class="separator clearfix"></div>
+                <p>Inventore dolores aut laboriosam cum consequuntur delectus sequi lorem ipsum dolor sit amet, consectetur.</p>
+                <a href="#" class="btn btn-default btn-animated">Call Us <i class="pl-1 fa fa-phone"></i></a>
+              </div>
+            </div>
+            <div class="col-md-6 col-lg-3">
+              <div class="pv-30 ph-20 white-bg feature-box bordered text-center">
+                <span class="icon default-bg circle"><i class="fa fa-clock-o"></i></span>
+                <h3>Opening Hours</h3>
+                <div class="separator-2 mt-20 clearfix"></div>
+                <ul class="list-unstyled small list-icons text-left">
+                  <li><strong class="text-default">Monday - Friday</strong> <span class="pull-right">8.00 - 18.00</span></li>
+                  <li><strong class="text-default">Saturday</strong> <span class="pull-right">9.00 - 16.30</span></li>
+                  <li><strong class="text-default">Sunday</strong> <span class="pull-right">9.30 - 16.00</span></li>
+                </ul>
+                <div class="separator-3 mt-20 clearfix"></div>
+                <p class="small text-default">Lorem ipsum dolor sit amet, consectetur.</p>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-12">
+              <div class="call-to-action pv-40 text-center">
+                <div class="row justify-content-lg-center">
+                  <div class="col-lg-8">
+                    <h2 class="title">Join Us Now</h2>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellendus error pariatur deserunt laudantium nam, mollitia quas nihil inventore, quibusdam?</p>
+                    <div class="separator"></div>
+                    <form class="form-inline margin-clear d-flex justify-content-center">
+                      <div class="form-group has-feedback">
+                        <label class="sr-only" for="subscribe2">Email address</label>
+                        <input type="email" class="form-control form-control-lg" id="subscribe2" placeholder="Enter email" name="subscribe2" required="">
+                        <i class="fa fa-envelope form-control-feedback"></i>
+                      </div>
+                      <button type="submit" class="btn btn-lg btn-gray-transparent btn-animated margin-clear ml-3">Submit <i class="fa fa-send"></i></button>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+		<!-- section end -->
 
-		<p>The corresponding controller for this page is found at:</p>
-		<code>application/controllers/Welcome.php</code>
 
-		<p>If you are exploring CodeIgniter for the very first time, you should start by reading the <a href="user_guide/">User Guide</a>.</p>
+		<?php $this->load->view("includes/footer"); ?>
 	</div>
 
-	<p class="footer">Page rendered in <strong>{elapsed_time}</strong> seconds. <?php echo  (ENVIRONMENT === 'development') ?  'CodeIgniter Version <strong>' . CI_VERSION . '</strong>' : '' ?></p>
-</div>
-
+	<?php $this->load->view("includes/include_script"); ?>
 </body>
+
 </html>
