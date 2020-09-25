@@ -33,4 +33,30 @@ class Home extends CI_Controller{
         $this->load->view($viewData->viewFolder, $viewData);
 
     }
+
+    public function product_detail($url){
+        
+        $viewData = new stdClass();
+        $viewData->viewFolder = "product_v";
+
+        $this->load->model("product_model");
+        $this->load->helper("text");
+
+        $viewData->product = $this->product_model->get(
+            array(
+                "isActive" => 1,
+                "url" => $url,
+            )
+        );
+
+        $viewData->products = $this->product_model->get_all(
+            array(
+                "isActive" => 1,
+                "id !=" => $viewData->product->id,
+            ), "rand()", array("start" => 0, "count" => 3)
+        );
+
+        $this->load->view($viewData->viewFolder, $viewData);
+
+    }
 }

@@ -71,7 +71,7 @@
                       <li class="dropdown ">
                         <a class="dropdown-toggle" data-toggle="dropdown" href="#">Hakkımızda</a>
                         <ul class="dropdown-menu">
-                          <li><a href="features-dark-page.html">Hakkımızda</a></li>
+                          <li><a href="#">Hakkımızda</a></li>
                           <li><a href="features-typography.html">Portfolyo</a></li>
                           <li><a href="features-backgrounds.html">Haberler</a></li>
                           <li><a href="features-grid.html">Referanslar</a></li>
@@ -87,7 +87,7 @@
                         </ul>
                       </li>
 
-                      <li><a href="index.html">Ürünler</a></li>
+                      <li><a href="<?php echo base_url("urun-listesi"); ?>">Ürünler</a></li>
 
                       <li><a href="index.html">Eğitimler</a></li>
 
