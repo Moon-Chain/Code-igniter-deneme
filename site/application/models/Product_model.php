@@ -19,8 +19,9 @@ class Product_model extends CI_Model
     /** Tüm Kayıtları bana getirecek olan metot.. */
     public function get_all($where = array(), $order = "id ASC", $limit = array("count" => 0, "start" => 0))
     {
+
         $this->db->where($where)->order_by($order);
-        
+
         if(!empty($limit))
             $this->db->limit($limit["count"], $limit["start"]);
 
