@@ -250,7 +250,7 @@ class Home extends CI_Controller {
             "word"          => '',
             "img_path"      => 'captcha/',
             "img_url"       => base_url("captcha"),
-            "font_path"     => 'fonts/corbel.ttf',
+            "font_path"     => '/fonts/corbel.ttf',
             "img_width"     => 150,
             "img_height"    => 50,
             "expiration"    => 7200,
@@ -362,6 +362,86 @@ class Home extends CI_Controller {
         }
 
         redirect(base_url("iletisim"));
+
+    }
+
+
+    public function news_list(){
+
+
+        $viewData = new stdClass();
+        $viewData->viewFolder = "news_list_v";
+
+        $this->load->model("news_model");
+
+        $viewData->news_list = $this->news_model->get_all(
+            array(
+                "isActive"  => 1
+            ), "rank DESC"
+        );
+
+        $this->load->view($viewData->viewFolder, $viewData);
+
+    }
+
+
+    public function news($url){
+
+
+        if($url != "") {
+
+
+            $viewData = new stdClass();
+            $viewData->viewFolder = "news_v";
+
+            $this->load->model("news_model");
+
+            $news = $this->news_model->get(
+                array(
+                    "isActive"  => 1,
+                    "url"       => $url
+                )
+            );
+
+            if($news){
+
+
+                $viewData->news = $news;
+
+                $viewData->recent_news_list = $this->news_model->get_all(
+                    array(
+                        "isActive"  => 1,
+                        "id !="     => $news->id
+                    ), "rank DESC", array("count"   => 4, "start"   => 0)
+                );
+
+
+                /************** viewCount Değerini Arttırma ***********/
+
+                $viewCount = $news->viewCount + 1;
+                $this->news_model->update(
+                    array(
+                        "id"    => $news->id
+                    ),
+                    array(
+                        "viewCount" => $viewCount
+                    )
+                );
+
+                $viewData->news->viewCount = $viewCount;
+                $viewData->opengraph = true;
+
+                $this->load->view($viewData->viewFolder, $viewData);
+
+
+            } else {
+                // TODO Alert eklenecek
+            }
+
+        } else {
+
+            // TODO Alert eklenecek
+        }
 
     }
 
