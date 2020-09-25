@@ -91,7 +91,7 @@
                                             <li><a href="<?php echo base_url("urun-listesi"); ?>">Ürünler</a></li>
                                             <li><a href="<?php echo base_url("egitim-listesi"); ?>">Eğitimler</a></li>
                                             <li><a href="<?php echo base_url("markalar"); ?>">Markalar</a></li>
-                                            <li><a href="index.html">İletişim</a></li>
+                                            <li><a href="<?php echo base_url("iletisim"); ?>">İletişim</a></li>
 
                                         </ul>
                                         <!-- main-menu end -->

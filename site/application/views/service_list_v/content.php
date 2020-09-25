@@ -13,7 +13,7 @@
                 <h1 class="page-title">Hizmet Listemiz</h1>
                 <div class="separator-2"></div>
                 <!-- page-title end -->
-                <p class="lead">Size sunduğumuz hizmetlerimiz...</p>
+                <p class="lead">Size sundu</p>
 
                 <?php $index = 0; ?>
                 <?php foreach($services as $service) { ?>
