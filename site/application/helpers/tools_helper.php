@@ -78,3 +78,21 @@ function get_portfolio_cover_image($id){
     return !empty($cover_image) ? $cover_image->img_url : "";
 
 }
+
+function get_settings(){
+
+    $t = &get_instance();
+
+//    $settings = $t->session->userdata("settings");
+
+//    if(empty($settings)){
+
+        $t->load->model("settings_model");
+
+        $settings = $t->settings_model->get();
+
+        $t->session->set_userdata("settings", $settings);
+//    }
+
+    return $settings;
+}
