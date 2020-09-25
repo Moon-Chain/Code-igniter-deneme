@@ -74,7 +74,7 @@
                                                     <li ><a href="features-dark-page.html">Hakkımızda</a></li>
                                                     <li ><a href="<?php echo base_url("portfolyo-listesi"); ?>">Portfolyo</a></li>
                                                     <li ><a href="features-backgrounds.html">Haberler</a></li>
-                                                    <li ><a href="features-grid.html">Referanslar</a></li>
+                                                    <li ><a href="<?php echo base_url("referanslar"); ?>">Referanslar</a></li>
                                                 </ul>
                                             </li>
                                             <li class="dropdown ">
@@ -86,8 +86,8 @@
                                                 </ul>
                                             </li>
                                             <li><a href="<?php echo base_url("urun-listesi"); ?>">Ürünler</a></li>
-                                            <li><a href="index.html">Eğitimler</a></li>
-                                            <li><a href="index.html">Markalar</a></li>
+                                            <li><a href="<?php echo base_url("egitim-listesi"); ?>">Eğitimler</a></li>
+                                            <li><a href="<?php echo base_url("markalar"); ?>">Markalar</a></li>
                                             <li><a href="index.html">İletişim</a></li>
 
                                         </ul>
