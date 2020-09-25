@@ -17,7 +17,7 @@
                     <div class="body">
                         <h3><?php echo $product->title; ?></h3>
                         <div class="separator"></div>
-                        <p><?php echo $product->description; ?></p>
+                        <p><?php echo character_limiter(strip_tags($product->description), 45, "..."); ?></p>
                         <a href="#" class="btn btn-default btn-sm btn-hvr hvr-shutter-out-horizontal margin-clear">Read More<i class="fa fa-arrow-right pl-10"></i></a>
                     </div>
                 </div>

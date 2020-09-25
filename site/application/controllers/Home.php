@@ -22,6 +22,7 @@ class Home extends CI_Controller{
         $viewData->viewFolder = "product_list_v";
 
         $this->load->model("product_model");
+        $this->load->helper("text");
 
         $viewData->products = $this->product_model->get_all(
             array(
