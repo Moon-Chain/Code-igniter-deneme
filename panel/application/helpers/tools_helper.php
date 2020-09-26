@@ -133,7 +133,7 @@ function upload_picture($file, $uploadPath, $width, $height, $name){
         $simpleImage
             ->fromFile($file)
             ->thumbnail($width,$height,'center')
-            ->toFile("{$uploadPath}/{$width}x{$height}/$name", 'image/png');
+            ->toFile("{$uploadPath}/{$width}x{$height}/$name", null, 75);
 
     } catch(Exception $err) {
         $error =  $err->getMessage();

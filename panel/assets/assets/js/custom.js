@@ -80,6 +80,14 @@ $(document).ready(function () {
 
     })
 
+
+    $(".button_usage_btn").change(function(){
+
+        $(".button-information-container").slideToggle();
+
+    })
+
+
     var uploadSection = Dropzone.forElement("#dropzone");
 
     uploadSection.on("complete", function(file){
