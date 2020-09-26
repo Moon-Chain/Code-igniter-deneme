@@ -16,7 +16,11 @@ class Home extends CI_Controller {
     public function index(){
 
         // Anasayfa...
-        echo $this->viewFolder;
+        $viewData = new stdClass();
+
+        $viewData->viewFolder = "home_v";
+
+        $this->load->view($viewData->viewFolder, $viewData);
 
     }
 
