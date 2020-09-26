@@ -40,7 +40,8 @@
                                 <td class="text-center w100">
                                     <?php if($item->news_type == "image") { ?>
 
-                                        <img width="75" src="<?php echo base_url("uploads/$viewFolder/$item->img_url"); ?>"
+                                        <img width="75"
+                                             src="<?php echo get_picture($viewFolder, $item->img_url, "513x289"); ?>"
                                              alt=""
                                              class="img-rounded">
 

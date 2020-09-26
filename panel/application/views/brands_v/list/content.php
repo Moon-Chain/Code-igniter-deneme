@@ -34,7 +34,8 @@
                                 <td class="w50 text-center">#<?php echo $item->id; ?></td>
                                 <td><?php echo $item->title; ?></td>
                                 <td class="text-center w100">
-                                    <img width="75" src="<?php echo base_url("uploads/$viewFolder/$item->img_url"); ?>"
+                                    <img width="75"
+                                         src="<?php echo get_picture($viewFolder, $item->img_url, "350x216"); ?>"
                                          alt="" class="img-rounded">
                                 </td>
                                 <td class="text-center w100">

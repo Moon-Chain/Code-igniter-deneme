@@ -448,21 +448,14 @@ class Product extends CI_Controller
 
         $file_name = convertToSEO(pathinfo($_FILES["file"]["name"], PATHINFO_FILENAME)) . "." . pathinfo($_FILES["file"]["name"], PATHINFO_EXTENSION);
 
-        $config["allowed_types"] = "jpg|jpeg|png";
-        $config["upload_path"]   = "uploads/$this->viewFolder/";
-        $config["file_name"] = $file_name;
+        $image_348x215 = upload_picture($_FILES["file"]["tmp_name"], "uploads/$this->viewFolder",348,215, $file_name);
+        $image_1080x426 = upload_picture($_FILES["file"]["tmp_name"], "uploads/$this->viewFolder",1080,426, $file_name);
 
-        $this->load->library("upload", $config);
-
-        $upload = $this->upload->do_upload("file");
-
-        if($upload){
-
-            $uploaded_file = $this->upload->data("file_name");
+        if($image_348x215 && $image_1080x426){
 
             $this->product_image_model->add(
                 array(
-                    "img_url"       => $uploaded_file,
+                    "img_url"       => $file_name,
                     "rank"          => 0,
                     "isActive"      => 1,
                     "isCover"       => 0,

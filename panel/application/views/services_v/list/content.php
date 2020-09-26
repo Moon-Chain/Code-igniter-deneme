@@ -36,8 +36,8 @@
                                 <td><?php echo $item->title; ?></td>
                                 <td><?php echo $item->url; ?></td>
                                 <td class="text-center w100">
-                                    <img width="75" src="<?php echo base_url("uploads/$viewFolder/$item->img_url"); ?>"
-                                         alt="" class="img-rounded">
+<!--                                    <img width="75" src="--><?php //echo base_url("uploads/$viewFolder/$item->img_url"); ?><!--" alt="" class="img-rounded">-->
+                                    <img width="75" src="<?php echo get_picture($viewFolder,$item->img_url, "350x217"); ?>" alt="" class="img-rounded">
                                 </td>
                                 <td class="text-center w100">
                                     <input
