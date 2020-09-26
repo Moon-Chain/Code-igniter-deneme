@@ -8,6 +8,13 @@ License URI:http://support.wrapbootstrap.com/
 File Description: Place here your custom CSS styles
 */
 
-.justify-content-center{
+.justify-content-center {
     justify-content: center;
+}
+
+@media (min-width: 576px) {
+    .modal-dialog {
+        max-width: 674px;
+        margin: 30px auto;
+    }
 }

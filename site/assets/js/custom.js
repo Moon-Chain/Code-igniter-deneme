@@ -42,6 +42,27 @@
 			}); // End Notify Plugin - The above code (from line 14) is used for demonstration purposes only
 
 		};
+
+		$(".neverShowAgainBtn").click(function(){
+
+            var $url 		= $(this).data("url");
+            var $id  		= $(this).data("popup-id");
+
+            var $data = {
+                url : $url,
+                popup_id : $id,
+            }
+
+			var csrf_key 	= $(this).data("csrf-key");
+			var csrf_value 	= $(this).data("csrf-value");
+
+			$data[csrf_key] = csrf_value;
+
+			$.post($url, $data, function(){})
+
+		})
+
 	}); // End document ready
+
 
 })(this.jQuery);

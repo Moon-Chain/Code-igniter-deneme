@@ -170,3 +170,23 @@ function get_picture($path = "", $picture = "", $resolution = "50x50"){
     return $picture;
 
 }
+
+
+function get_page_list($page){
+
+    $page_list = array(
+        "home_v"                => "Anasayfa",
+        "about_v"               => "Hakkımızda Sayfası",
+        "news_list_v"           => "Haberler Sayfası",
+        "galleries"             => "Galeri Sayfası",
+        "portfolio_list_v"      => "Portfolyo Sayfası",
+        "reference_list_v"      => "Referanslar Sayfası",
+        "service_list_v"        => "Hizmetler Sayfası",
+        "course_list_v"         => "Eğitimler Sayfası",
+        "brand_list_v"          => "Markalar Sayfası",
+        "contact_v"             => "İletişim Sayfası",
+    );
+
+
+    return (empty($page)) ? $page_list : $page_list[$page];
+}

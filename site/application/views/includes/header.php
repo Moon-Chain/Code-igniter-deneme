@@ -143,9 +143,9 @@
                                         <li class="nav-item dropdown ">
                                             <a href="#" class="nav-link dropdown-toggle" id="third-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Galeriler</a>
                                             <ul class="dropdown-menu" aria-labelledby="third-dropdown">
-                                                <li ><a href="<?php echo base_url(); ?>">Resim Galerisi</a></li>
-                                                <li ><a href="<?php echo base_url(); ?>">Video Galerisi</a></li>
-                                                <li ><a href="<?php echo base_url(); ?>">Dosya Galerisi</a></li>
+                                                <li ><a href="<?php echo base_url("fotograf-galerisi"); ?>">Resim Galerisi</a></li>
+                                                <li ><a href="<?php echo base_url("video-galerisi"); ?>">Video Galerisi</a></li>
+                                                <li ><a href="<?php echo base_url("dosya-galerisi"); ?>">Dosya Galerisi</a></li>
                                             </ul>
                                         </li>
 

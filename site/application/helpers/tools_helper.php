@@ -159,3 +159,54 @@ function get_picture($path = "", $picture = "", $resolution = "50x50"){
     return $picture;
 
 }
+
+function get_gallery_cover_image($folderName){
+
+    $path = "panel/uploads/galleries_v/images/$folderName/350x216";
+
+    if($handle = opendir($path)){
+        while(($file = readdir($handle)) !== false){
+
+            if($file != "." & $file != ".."){
+                return $file;
+            }
+
+        }
+
+
+    }
+
+
+}
+
+function get_popup_service($page = ""){
+
+    $t = &get_instance();
+
+    $t->load->model("popup_model");
+    $popup = $t->popup_model->get(
+        array(
+            "isActive"  => 1,
+            "page"      => $page
+        )
+    );
+
+    return (!empty($popup)) ? $popup : false;
+
+}
+
+function get_gallery_by_url($url = ""){
+
+    $t = &get_instance();
+    $t->load->model("gallery_model");
+
+    $gallery = $t->gallery_model->get(
+        array(
+            "isActive"  => 1,
+            "url"       => $url
+        )
+    );
+
+    return ($gallery) ? $gallery : false;
+
+}

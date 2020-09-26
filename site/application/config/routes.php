@@ -73,3 +73,15 @@ $route["abone-ol"]        = "home/make_me_member";
 
 $route["haberler"]        = "home/news_list";
 $route["haber/(:any)"]    = "home/news/$1";
+
+$route["bir-daha-gosterme"]  = "home/popup_never_show_again";
+
+$route["fotograf-galerisi"]        = "home/image_gallery_list";
+$route["fotograf-galerisi/(:any)"] = "home/image_gallery/$1";
+
+$route["video-galerisi"]        = "home/video_gallery_list";
+$route["video-galerisi/(:any)"] = "home/video_gallery/$1";
+
+$route["dosya-galerisi"]        = "home/file_gallery_list";
+$route["dosya-galerisi/(:any)"] = "home/file_gallery/$1";
+
