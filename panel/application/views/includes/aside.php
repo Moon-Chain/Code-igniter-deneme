@@ -166,6 +166,13 @@
                     </a>
                 </li>
 
+                <li>
+                    <a href="<?php echo base_url("testimonials"); ?>">
+                        <i class="menu-icon fa fa-comments"></i>
+                        <span class="menu-text">Ziyaretçi Notları</span>
+                    </a>
+                </li>
+
 
                 <li>
                     <a href="<?php echo base_url("popups"); ?>">

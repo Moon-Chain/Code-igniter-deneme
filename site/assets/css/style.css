@@ -486,6 +486,10 @@ tbody {
   background: url("../images/background-img-10.jpg") 50% 0px no-repeat;
 }
 
+.background-img-testimonials {
+  background: url("../images/testimonials_banner.jpg") 50% 0px no-repeat;
+}
+
 .fullscreen-bg {
   background: url("../images/fullscreen-bg.jpg") 50% 0px no-repeat;
   position: fixed;
@@ -6261,6 +6265,7 @@ header .container-fluid .animated.main-navigation .dropdown-menu .show .dropdown
   font-size: 11px;
   padding: 3px 0 0;
   font-weight: 300;
+  text-align: center;
   opacity: 1;
   filter: alpha(opacity=100);
   -webkit-transition: all 0.3s ease-in-out;

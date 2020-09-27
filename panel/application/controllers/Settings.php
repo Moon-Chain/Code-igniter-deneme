@@ -61,7 +61,39 @@ class Settings extends CI_Controller
 
             $alert = array(
                 "title" => "İşlem Başarısız",
-                "text" => "Lütfen bir görsel seçiniz",
+                "text" => "Masaüstü Logo için lütfen bir görsel seçiniz",
+                "type"  => "error"
+            );
+
+            // İşlemin Sonucunu Session'a yazma işlemi...
+            $this->session->set_flashdata("alert", $alert);
+
+            redirect(base_url("settings/new_form"));
+
+            die();
+        }
+
+        if($_FILES["mobile_logo"]["name"] == ""){
+
+            $alert = array(
+                "title" => "İşlem Başarısız",
+                "text" => "Mobil Logo için lütfen bir görsel seçiniz",
+                "type"  => "error"
+            );
+
+            // İşlemin Sonucunu Session'a yazma işlemi...
+            $this->session->set_flashdata("alert", $alert);
+
+            redirect(base_url("settings/new_form"));
+
+            die();
+        }
+
+        if($_FILES["favicon"]["name"] == ""){
+
+            $alert = array(
+                "title" => "İşlem Başarısız",
+                "text" => "Favicon için lütfen bir görsel seçiniz",
                 "type"  => "error"
             );
 
@@ -94,8 +126,10 @@ class Settings extends CI_Controller
             $file_name = convertToSEO($this->input->post("company_name")) . "." . pathinfo($_FILES["logo"]["name"], PATHINFO_EXTENSION);
 
             $image_150x35 = upload_picture($_FILES["logo"]["tmp_name"], "uploads/$this->viewFolder",150,35, $file_name);
+            $image_300x70 = upload_picture($_FILES["mobile_logo"]["tmp_name"], "uploads/$this->viewFolder",300,70, $file_name);
+            $image_32x32  = upload_picture($_FILES["favicon"]["tmp_name"], "uploads/$this->viewFolder",32,32, $file_name);
 
-            if($image_150x35){
+            if($image_150x35 && $image_300x70 && $image_32x32){
 
                 $insert = $this->settings_model->add(
                     array(
@@ -114,6 +148,8 @@ class Settings extends CI_Controller
                         "instagram"     => $this->input->post("instagram"),
                         "linkedin"      => $this->input->post("linkedin"),
                         "logo"          => $file_name,
+                        "mobile_logo"   => $file_name,
+                        "favicon"       => $file_name,
                         "createdAt"     => date("Y-m-d H:i:s")
                     )
                 );
@@ -214,7 +250,26 @@ class Settings extends CI_Controller
 
         if($validate){
 
-            // Upload Süreci...
+
+            $data = array(
+                "company_name"  => $this->input->post("company_name"),
+                "phone_1"       => $this->input->post("phone_1"),
+                "phone_2"       => $this->input->post("phone_2"),
+                "fax_1"         => $this->input->post("fax_1"),
+                "fax_2"         => $this->input->post("fax_2"),
+                "address"       => $this->input->post("address"),
+                "about_us"      => $this->input->post("about_us"),
+                "mission"       => $this->input->post("mission"),
+                "vision"        => $this->input->post("vision"),
+                "email"         => $this->input->post("email"),
+                "facebook"      => $this->input->post("facebook"),
+                "twitter"       => $this->input->post("twitter"),
+                "instagram"     => $this->input->post("instagram"),
+                "linkedin"      => $this->input->post("linkedin"),
+                "updatedAt"     => date("Y-m-d H:i:s")
+            );
+
+            // Masaüstü Logosu için Upload Süreci...
             if($_FILES["logo"]["name"] !== "") {
 
                 $file_name = convertToSEO($this->input->post("company_name")) . "." . pathinfo($_FILES["logo"]["name"], PATHINFO_EXTENSION);
@@ -223,31 +278,14 @@ class Settings extends CI_Controller
 
                 if($image_150x35){
 
-                    $data = array(
-                        "company_name"  => $this->input->post("company_name"),
-                        "phone_1"       => $this->input->post("phone_1"),
-                        "phone_2"       => $this->input->post("phone_2"),
-                        "fax_1"         => $this->input->post("fax_1"),
-                        "fax_2"         => $this->input->post("fax_2"),
-                        "address"       => $this->input->post("address"),
-                        "about_us"      => $this->input->post("about_us"),
-                        "mission"       => $this->input->post("mission"),
-                        "vision"        => $this->input->post("vision"),
-                        "email"         => $this->input->post("email"),
-                        "facebook"      => $this->input->post("facebook"),
-                        "twitter"       => $this->input->post("twitter"),
-                        "instagram"     => $this->input->post("instagram"),
-                        "linkedin"      => $this->input->post("linkedin"),
-                        "logo"          => $file_name,
-                        "updatedAt"     => date("Y-m-d H:i:s")
-                    );
+                    $data["logo"] = $file_name;
 
                 } else {
 
                     $alert = array(
                         "title" => "İşlem Başarısız",
-                        "text" => "Görsel yüklenirken bir problem oluştu",
-                        "type" => "error"
+                        "text"  => "Masaüstü görseli yüklenirken bir problem oluştu",
+                        "type"  => "error"
                     );
 
                     $this->session->set_flashdata("alert", $alert);
@@ -258,27 +296,66 @@ class Settings extends CI_Controller
 
                 }
 
-            } else {
+            }
 
-                $data = array(
-                    "company_name"  => $this->input->post("company_name"),
-                    "phone_1"       => $this->input->post("phone_1"),
-                    "phone_2"       => $this->input->post("phone_2"),
-                    "fax_1"         => $this->input->post("fax_1"),
-                    "fax_2"         => $this->input->post("fax_2"),
-                    "address"       => $this->input->post("address"),
-                    "about_us"      => $this->input->post("about_us"),
-                    "mission"       => $this->input->post("mission"),
-                    "vision"        => $this->input->post("vision"),
-                    "email"         => $this->input->post("email"),
-                    "facebook"      => $this->input->post("facebook"),
-                    "twitter"       => $this->input->post("twitter"),
-                    "instagram"     => $this->input->post("instagram"),
-                    "linkedin"      => $this->input->post("linkedin"),
-                    "updatedAt"     => date("Y-m-d H:i:s")
-                );
+            // Mobil Logosu için Upload Süreci...
+            if($_FILES["mobile_logo"]["name"] !== "") {
+
+                $file_name = convertToSEO($this->input->post("company_name")) . "." . pathinfo($_FILES["mobile_logo"]["name"], PATHINFO_EXTENSION);
+
+                $image_300x70 = upload_picture($_FILES["mobile_logo"]["tmp_name"], "uploads/$this->viewFolder",300,70, $file_name);
+
+                if($image_300x70){
+
+                    $data["mobile_logo"] = $file_name;
+
+                } else {
+
+                    $alert = array(
+                        "title" => "İşlem Başarısız",
+                        "text"  => "Mobil görseli yüklenirken bir problem oluştu",
+                        "type"  => "error"
+                    );
+
+                    $this->session->set_flashdata("alert", $alert);
+
+                    redirect(base_url("settings/update_form/$id"));
+
+                    die();
+
+                }
 
             }
+
+            // Favicon için Upload Süreci...
+            if($_FILES["favicon"]["name"] !== "") {
+
+                $file_name = convertToSEO($this->input->post("company_name")) . "." . pathinfo($_FILES["favicon"]["name"], PATHINFO_EXTENSION);
+
+                $image_32x32 = upload_picture($_FILES["favicon"]["tmp_name"], "uploads/$this->viewFolder",32,32, $file_name);
+
+                if($image_32x32){
+
+                    $data["favicon"] = $file_name;
+
+                } else {
+
+                    $alert = array(
+                        "title" => "İşlem Başarısız",
+                        "text"  => "Favicon görseli yüklenirken bir problem oluştu",
+                        "type"  => "error"
+                    );
+
+                    $this->session->set_flashdata("alert", $alert);
+
+                    redirect(base_url("settings/update_form/$id"));
+
+                    die();
+
+                }
+
+            }
+
 
             $update = $this->settings_model->update(array("id" => $id), $data);
 

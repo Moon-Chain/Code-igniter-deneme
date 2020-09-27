@@ -22,6 +22,7 @@ class Home extends CI_Controller {
         $this->load->model("reference_model");
         $this->load->model("service_model");
         $this->load->model("portfolio_model");
+        $this->load->model("testimonial_model");
 
         $slides = $this->slide_model->get_all(
             array(
@@ -47,11 +48,18 @@ class Home extends CI_Controller {
             ), "rank ASC"
         );
 
+        $testimonials = $this->testimonial_model->get_all(
+            array(
+                "isActive"  => 1
+            ), "rank ASC"
+        );
+
 
         $viewData->portfolios   = $portfolios;
         $viewData->slides       = $slides;
         $viewData->references   = $references;
         $viewData->services     = $services;
+        $viewData->testimonials = $testimonials;
         $viewData->viewFolder   = "home_v";
 
         $this->load->view($viewData->viewFolder, $viewData);
@@ -288,7 +296,7 @@ class Home extends CI_Controller {
             "word"          => '',
             "img_path"      => 'captcha/',
             "img_url"       => base_url("captcha"),
-            "font_path"     => 'fonts/corbel.ttf',
+            "font_path"     => '/fonts/corbel.ttf',
             "img_width"     => 150,
             "img_height"    => 50,
             "expiration"    => 7200,
