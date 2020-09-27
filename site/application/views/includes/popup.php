@@ -4,7 +4,7 @@
 
 <?php if($popup){
 
-    $popup_cookie = get_cookie($popup->id);
+    $popup_cookie = get_cookie($popup->popup_unique_id);
 
     if($popup_cookie != "true"){ ?>
 
@@ -23,7 +23,7 @@
                     <div class="modal-footer">
                         <button type="button" class="btn btn-sm btn-dark" data-dismiss="modal">Kapat</button>
                         <button
-                            data-popup-id = "<?php echo $popup->id; ?>"
+                            data-popup-id = "<?php echo $popup->popup_unique_id; ?>"
                             data-url="<?php echo base_url("bir-daha-gosterme"); ?>"
                             data-csrf-key="<?php echo $this->security->get_csrf_token_name(); ?>"
                             data-csrf-value="<?php echo $this->security->get_csrf_hash(); ?>"

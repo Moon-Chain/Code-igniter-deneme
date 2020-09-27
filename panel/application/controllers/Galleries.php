@@ -417,6 +417,8 @@ class Galleries extends CI_Controller
                 ), "rank ASC"
             );
 
+            $viewData->folder_name = $item->folder_name;
+
         } else if($item->gallery_type == "file"){
 
             $viewData->items = $this->file_model->get_all(
@@ -442,7 +444,7 @@ class Galleries extends CI_Controller
 
     }
 
-    public function file_upload($gallery_id, $gallery_type, $folderName){
+    public function file_upload_old_method($gallery_id, $gallery_type, $folderName){
 
         $file_name = convertToSEO(pathinfo($_FILES["file"]["name"], PATHINFO_FILENAME)) . "." . pathinfo($_FILES["file"]["name"], PATHINFO_EXTENSION);
 
@@ -476,7 +478,67 @@ class Galleries extends CI_Controller
 
     }
 
-    public function refresh_file_list($gallery_id, $gallery_type){
+    public function file_upload($gallery_id, $gallery_type, $folderName){
+
+        $file_name = convertToSEO(pathinfo($_FILES["file"]["name"], PATHINFO_FILENAME)) . "." . pathinfo($_FILES["file"]["name"], PATHINFO_EXTENSION);
+
+        if($gallery_type == "image"){
+
+            // simple Image...
+            $image_252x156 = upload_picture($_FILES["file"]["tmp_name"], "uploads/$this->viewFolder/images/$folderName/",252,156, $file_name);
+            $image_350x216 = upload_picture($_FILES["file"]["tmp_name"], "uploads/$this->viewFolder/images/$folderName/",350,216, $file_name);
+            $image_851x606 = upload_picture($_FILES["file"]["tmp_name"], "uploads/$this->viewFolder/images/$folderName/",851,606, $file_name);
+
+            if($image_252x156 && $image_350x216 && $image_851x606){
+
+                $this->image_model->add(
+                    array(
+                        "url"           => $file_name,
+                        "rank"          => 0,
+                        "isActive"      => 1,
+                        "createdAt"     => date("Y-m-d H:i:s"),
+                        "gallery_id"    => $gallery_id
+                    )
+                );
+
+
+            } else {
+                echo "islem basarisiz";
+            }
+
+        } else {
+
+            $config["allowed_types"] = "*";
+            $config["upload_path"]   = "uploads/$this->viewFolder/files/$folderName/";
+            $config["file_name"]     = $file_name;
+
+            $this->load->library("upload", $config);
+
+            $upload = $this->upload->do_upload("file");
+
+            if($upload){
+
+                $uploaded_file = $this->upload->data("file_name");
+
+                $this->file_model->add(
+                    array(
+                        "url"           => "$uploaded_file",
+                        "rank"          => 0,
+                        "isActive"      => 1,
+                        "createdAt"     => date("Y-m-d H:i:s"),
+                        "gallery_id"    => $gallery_id
+                    )
+                );
+
+            } else {
+                echo $this->upload->display_errors();
+            }
+
+        }
+
+    }
+
+    public function refresh_file_list($gallery_id, $gallery_type, $folder_name){
 
         $viewData = new stdClass();
 
@@ -492,6 +554,7 @@ class Galleries extends CI_Controller
             )
         );
 
+        $viewData->folder_name  = $folder_name;
         $viewData->gallery_type = $gallery_type;
 
         $render_html = $this->load->view("{$viewData->viewFolder}/{$viewData->subViewFolder}/render_elements/file_list_v", $viewData, true);

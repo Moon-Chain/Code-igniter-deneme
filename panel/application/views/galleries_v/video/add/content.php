@@ -11,7 +11,7 @@
 
                         <div class="form-group">
                             <label>Video URL</label>
-                            <input class="form-control" placeholder="Video bağlantısını buraya yapıştırınız" name="url">
+                            <input class="form-control" placeholder="Video bağlantısını (id) buraya yapıştırınız" name="url">
                             <?php if(isset($form_error)){ ?>
                                 <small class="pull-right input-form-error"> <?php echo form_error("url"); ?></small>
                             <?php } ?>

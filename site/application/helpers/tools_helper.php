@@ -84,7 +84,6 @@ function get_settings(){
     $t = &get_instance();
 
 //    $settings = $t->session->userdata("settings");
-
 //    if(empty($settings)){
 
         $t->load->model("settings_model");
@@ -146,13 +145,15 @@ function get_picture($path = "", $picture = "", $resolution = "50x50"){
         if(file_exists(FCPATH . "panel/uploads/$path/$resolution/$picture")){
             $picture = base_url("panel/uploads/$path/$resolution/$picture");
         } else {
-            $picture = base_url("assets/assets/images/default_image.png");
+            $picture = base_url("assets/images/default_image_$resolution.png");
 
         }
 
     } else {
 
-        $picture = base_url("assets/assets/images/default_image.png");
+
+        //construction-service-1.jpg
+        $picture = base_url("assets/images/default_image_$resolution.png");
 
     }
 

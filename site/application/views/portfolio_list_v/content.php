@@ -24,7 +24,8 @@
 
                                 <?php
                                 $image = get_portfolio_cover_image($portfolio->id);
-                                $image = ($image) ? base_url("panel/uploads/portfolio_v/$image") : base_url("assets/images/portfolio-1.jpg");
+//                                $image = ($image) ? base_url("panel/uploads/portfolio_v/$image") : base_url("assets/images/portfolio-1.jpg");
+                                $image = get_picture("portfolio_v", $image, "255x157");
                                 ?>
 
                                 <img src="<?php echo $image; ?>" alt="<?php echo $portfolio->title; ?>">

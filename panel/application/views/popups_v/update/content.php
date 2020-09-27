@@ -12,7 +12,7 @@
                     <div class="form-group">
                         <label>Hedef Sayfa</label>
                         <select name="page" class="form-control">
-                            <?php foreach(get_page_list($page) as $page => $value) { ?>
+                            <?php foreach(get_page_list() as $page => $value) { ?>
                                 <?php $page_value =  isset($form_error) ? set_value("page") : $item->page; ?>
                                 <option
                                         <?php echo ($page == $page_value) ? "selected" : ""; ?>

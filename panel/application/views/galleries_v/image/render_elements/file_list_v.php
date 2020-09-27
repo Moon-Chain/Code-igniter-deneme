@@ -24,7 +24,11 @@
                 <td class="w50 text-center">#<?php echo $item->id; ?></td>
                 <td class="w100 text-center">
                     <?php if($gallery_type == "image"){ ?>
-                        <img width="30" src="<?php echo base_url("$item->url"); ?>" alt="<?php echo $item->url; ?>" class="img-responsive">
+                        <img
+                                width="100"
+                                src="<?php echo get_picture("galleries_v/images/$folder_name",$item->url,"252x156") ?>"
+                                alt="<?php echo $item->url; ?>"
+                                class="img-responsive">
                     <?php } else if($gallery_type == "file") { ?>
                         <i class="fa fa-folder fa-2x"></i>
                     <?php } ?>

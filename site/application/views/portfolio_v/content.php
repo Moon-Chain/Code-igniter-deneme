@@ -23,7 +23,7 @@
                                             <li class="text-center" data-transition="slidehorizontal" data-slotamount="default" data-masterspeed="default" data-title="<?php echo $portfolio->title; ?>">
 
                                                 <!-- main image -->
-                                                <img src="<?php echo base_url("panel/uploads/portfolio_v/$image->img_url");?>" alt="<?php echo $portfolio->title; ?>" data-bgposition="center top"  data-bgrepeat="no-repeat" data-bgfit="cover" class="rev-slidebg">
+                                                <img src="<?php echo get_picture("portfolio_v", $image->img_url, "1080x426"); ?>" alt="<?php echo $portfolio->title; ?>" data-bgposition="center top"  data-bgrepeat="no-repeat" data-bgfit="cover" class="rev-slidebg">
 
                                                 <!-- Transparent Background -->
                                                 <div class="tp-caption dark-translucent-bg"
@@ -103,7 +103,8 @@
 
                                             <?php
                                             $image = get_portfolio_cover_image($portfolio->id);
-                                            $image = ($image) ? base_url("panel/uploads/portfolio_v/$image") : base_url("assets/images/portfolio-1.jpg");
+//                                            $image = ($image) ? base_url("panel/uploads/portfolio_v/$image") : base_url("assets/images/portfolio-1.jpg");
+                                            $image = get_picture("portfolio_v", $image, "352x171");
                                             ?>
 
                                             <img src="<?php echo $image; ?>" alt="">
@@ -113,7 +114,7 @@
                                         </div>
                                         <div class="body">
                                             <p><?php echo character_limiter(strip_tags($portfolio->description), 30); ?></p>
-                                            <a href="<?php echo base_url("urun-detay/$portfolio->url"); ?>" class="btn btn-default btn-sm btn-hvr hvr-sweep-to-right margin-clear">Görüntüle<i class="fa fa-arrow-right pl-10"></i></a>
+                                            <a href="<?php echo base_url("portfolyo-detay/$portfolio->url"); ?>" class="btn btn-default btn-sm btn-hvr hvr-sweep-to-right margin-clear">Görüntüle<i class="fa fa-arrow-right pl-10"></i></a>
                                         </div>
                                     </div>
                                 </div>
