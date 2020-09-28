@@ -25,7 +25,7 @@
 
                                 <div class="col-lg-6">
                                     <div class="overlay-container">
-                                        <img src="<?php echo base_url("panel/uploads/references_v/$reference->img_url");?>" alt="<?php echo $reference->title; ?>">
+                                        <img src="<?php echo base_url("panel/uploads/references_v/555x343/$reference->img_url");?>" alt="<?php echo $reference->title; ?>">
                                         <div class="overlay-to-top">
                                             <p class="small margin-clear"><em><?php echo $reference->title; ?></em></p>
                                         </div>

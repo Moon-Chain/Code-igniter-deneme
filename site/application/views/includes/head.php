@@ -1,4 +1,4 @@
-<?php $settings = get_settings();  print_r($settings);?>
+<?php $settings = get_settings();?>
 <meta charset="utf-8">
 <?php if (!empty($settings->company_name)) { ?>
     <title><?php echo $settings->company_name . " | " . $settings->slogan; ?></title>

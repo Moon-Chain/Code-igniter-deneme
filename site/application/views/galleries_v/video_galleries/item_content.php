@@ -16,7 +16,7 @@
 
                             <div class="col-3 mb-20">
                                 <div class="embed-responsive embed-responsive-16by9">
-                                    <iframe class="embed-responsive-item" src="//www.youtube.com/embed/<?php echo $video->url; ?>"></iframe>
+                                    <iframe class="embed-responsive-item" src="<?php echo $video->url; ?>"></iframe>
                                 </div>
                             </div>
 

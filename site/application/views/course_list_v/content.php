@@ -22,7 +22,7 @@
                         <div class="col-md-6 col-lg-4 col-xl-3">
                             <div class="overlay-container">
 
-                                <img src="<?php echo base_url("panel/uploads/courses_v/$course->img_url"); ?>" alt="<?php echo $course->title; ?>">
+                                <img src="<?php echo base_url("panel/uploads/courses_v/1140x705/$course->img_url"); ?>" alt="<?php echo $course->title; ?>">
 
                                 <div class="overlay-to-top">
                                     <p class="small margin-clear"><em><?php echo $course->title; ?></em></p>

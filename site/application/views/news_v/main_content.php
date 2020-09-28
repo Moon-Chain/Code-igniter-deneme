@@ -22,8 +22,8 @@
             <?php if($news->news_type == "image") { ?>
 
                 <div class="overlay-container mb-20">
-                    <img src="<?php echo base_url("panel/uploads/news_v/$news->img_url"); ?>" alt="<?php echo $news->url; ?>">
-                    <a class="overlay-link popup-img" href="<?php echo base_url("panel/uploads/news_v/$news->img_url"); ?>"><i class="fa fa-search-plus"></i></a>
+                    <img src="<?php echo base_url("panel/uploads/news_v/730x411/$news->img_url"); ?>" alt="<?php echo $news->url; ?>">
+                    <a class="overlay-link popup-img" href="<?php echo base_url("panel/uploads/news_v/730x411/$news->img_url"); ?>"><i class="fa fa-search-plus"></i></a>
                 </div>
 
             <?php } else { ?>

@@ -45,13 +45,13 @@
                                         <div class="overlay-container overlay-visible">
 
 
-                                            <img src="<?php echo base_url("panel/uploads/courses_v/$course->img_url"); ?>" alt="">
+                                            <img src="<?php echo base_url("panel/uploads/courses_v/1140x705/$course->img_url"); ?>" alt="">
                                             <div class="overlay-bottom text-left">
                                                 <p class="lead margin-clear"><?php echo $course->title; ?></p>
                                             </div>
                                         </div>
                                         <div class="body">
-                                            <p><?php echo character_limiter(strip_tags($course->description), 30); ?></p>
+                                            <p><?php echo character_limiter(strip_tags($course->description), 10); ?></p>
                                             <a href="<?php echo base_url("egitim-detay/$course->url"); ?>" class="btn btn-default btn-sm btn-hvr hvr-sweep-to-right margin-clear">Görüntüle<i class="fa fa-arrow-right pl-10"></i></a>
                                         </div>
                                     </div>
