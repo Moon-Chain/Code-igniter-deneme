@@ -27,17 +27,19 @@
 
                         <!-- logo -->
                         <div id="logo" class="logo">
-                            <a href="<?php echo base_url(); ?>">
-                                <img id="logo_img"
-                                     src="<?php echo get_picture("settings_v", $settings->logo, "150x35"); ?>"
-                                     alt="<?php echo $settings->company_name; ?>">
-                            </a>
+                            <?php if (!empty($settings->phone_1)) { ?>
+                                <a href="<?php echo base_url(); ?>">
+                                    <img id="logo_img" src="<?php echo get_picture("settings_v", $settings->logo, "150x35"); ?>" alt="<?php echo $settings->company_name; ?>">
+                                </a>
+                            <?php } ?>
                         </div>
 
                         <!-- name-and-slogan -->
-                        <div class="site-slogan">
-                            <?php echo $settings->slogan; ?>
-                        </div>
+                        <?php if (!empty($settings->slogan)) { ?>
+                            <div class="site-slogan">
+                                <?php echo $settings->slogan; ?>
+                            </div>
+                        <?php } ?>
 
                     </div>
                     <!-- header-first end -->
@@ -59,21 +61,25 @@
                                 <div class="navbar-brand clearfix hidden-lg-up">
 
                                     <!-- logo -->
-                                    <div id="logo-mobile" class="logo">
-                                        <a href="<?php echo base_url(); ?>">
+                                    <?php if (!empty($settings->mobile_logo)) { ?>
+                                        <div id="logo-mobile" class="logo">
+                                            <a href="<?php echo base_url(); ?>">
 
-                                        <?php //$this->agent->is_mobile() ?>
+                                                <?php //$this->agent->is_mobile() 
+                                                ?>
 
-                                            <img id="logo-img-mobile" src="<?php echo get_picture("settings_v",$settings->mobile_logo, "150x35"); ?>"
-                                                 alt="<?php echo $settings->company_name; ?>">
+                                                <img id="logo-img-mobile" src="<?php echo get_picture("settings_v", $settings->mobile_logo, "150x35"); ?>" alt="<?php echo $settings->company_name; ?>">
 
-                                        </a>
-                                    </div>
+                                            </a>
+                                        </div>
+                                    <?php } ?>
 
                                     <!-- name-and-slogan -->
-                                    <div class="site-slogan">
-                                        <?php echo $settings->slogan; ?>
-                                    </div>
+                                    <?php if (!empty($settings->slogan)) { ?>
+                                        <div class="site-slogan">
+                                            <?php echo $settings->slogan; ?>
+                                        </div>
+                                    <?php } ?>
 
                                 </div>
 
@@ -93,20 +99,20 @@
                                         <li class="nav-item dropdown ">
                                             <a href="#" class="nav-link dropdown-toggle" id="third-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Hakkımızda</a>
                                             <ul class="dropdown-menu" aria-labelledby="third-dropdown">
-                                                <li ><a href="<?php echo base_url("hakkimizda"); ?>">Hakkımızda</a></li>
-                                                <li ><a href="<?php echo base_url("haberler"); ?>">Haberler</a></li>
-                                                <li ><a href="<?php echo base_url("portfolyo-listesi"); ?>">Portfolyo</a></li>
-                                                <li ><a href="<?php echo base_url("referanslar"); ?>">Referanslar</a></li>
-                                                <li ><a href="<?php echo base_url("hizmetlerimiz"); ?>">Hizmetlerimiz</a></li>
+                                                <li><a href="<?php echo base_url("hakkimizda"); ?>">Hakkımızda</a></li>
+                                                <li><a href="<?php echo base_url("haberler"); ?>">Haberler</a></li>
+                                                <li><a href="<?php echo base_url("portfolyo-listesi"); ?>">Portfolyo</a></li>
+                                                <li><a href="<?php echo base_url("referanslar"); ?>">Referanslar</a></li>
+                                                <li><a href="<?php echo base_url("hizmetlerimiz"); ?>">Hizmetlerimiz</a></li>
                                             </ul>
                                         </li>
 
                                         <li class="nav-item dropdown ">
                                             <a href="#" class="nav-link dropdown-toggle" id="third-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Galeriler</a>
                                             <ul class="dropdown-menu" aria-labelledby="third-dropdown">
-                                                <li ><a href="<?php echo base_url("fotograf-galerisi"); ?>">Resim Galerisi</a></li>
-                                                <li ><a href="<?php echo base_url("video-galerisi"); ?>">Video Galerisi</a></li>
-                                                <li ><a href="<?php echo base_url("dosya-galerisi"); ?>">Dosya Galerisi</a></li>
+                                                <li><a href="<?php echo base_url("fotograf-galerisi"); ?>">Resim Galerisi</a></li>
+                                                <li><a href="<?php echo base_url("video-galerisi"); ?>">Video Galerisi</a></li>
+                                                <li><a href="<?php echo base_url("dosya-galerisi"); ?>">Dosya Galerisi</a></li>
                                             </ul>
                                         </li>
 
@@ -145,4 +151,3 @@
     </header>
     <!-- header end -->
 </div>
-

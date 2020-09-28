@@ -2,7 +2,7 @@
 
 <!-- banner start -->
 <!-- ================ -->
-<div class="banner dark-translucent-bg" style="background-image:url('<?php echo base_url("assets/images");?>/background-img-3.jpg'); background-position: 50% 30%;">
+<div class="banner dark-translucent-bg" style="background-image:url('<?php echo base_url("assets/images"); ?>/background-img-3.jpg'); background-position: 50% 30%;">
     <div class="container">
         <div class="row">
             <div class="col-md-12 text-center col-md-offset-2 pv-20">
@@ -12,23 +12,31 @@
                     Bize ulaşmak için aşağıdaki kanallardan herhangi birini kullanabilirsiniz
                 </p>
                 <ul class="list-inline mb-20 text-center">
-                    <li><i class="text-default fa fa-map-marker"></i> <?php echo strip_tags($settings->address); ?></li>
-                    <li><a href="tel:+00 1234567890" class="link-dark"><i class="text-default fa fa-phone pl-10"></i> <?php echo $settings->phone_1; ?></a></li>
-                    <li><a href="mailto:<?php echo $settings->email;?>" class="link-dark"><i class="text-default fa fa-envelope-o pl-10"></i> <?php echo $settings->email;?></a></li>
+                    <?php if (!empty($settings->address)) { ?>
+                        <li><i class="text-default fa fa-map-marker"></i> <?php echo strip_tags($settings->address); ?></li>
+                    <?php } ?>
+
+                    <?php if (!empty($settings->phone_1)) { ?>
+                        <li><a href="tel:+00 1234567890" class="link-dark"><i class="text-default fa fa-phone pl-10"></i> <?php echo $settings->phone_1; ?></a></li>
+                    <?php } ?>
+
+                    <?php if (!empty($settings->email)) { ?>
+                        <li><a href="mailto:<?php echo $settings->email; ?>" class="link-dark"><i class="text-default fa fa-envelope-o pl-10"></i> <?php echo $settings->email; ?></a></li>
+                    <?php } ?>
                 </ul>
                 <div class="separator"></div>
                 <ul class="social-links circle animated-effect-1 margin-clear text-center space-bottom">
-                    <?php if($settings->facebook) { ?>
+                    <?php if (isset($settings->facebook)) { ?>
                         <li class="facebook"><a target="_blank" href="<?php echo $settings->facebook; ?>"><i class="fa fa-facebook"></i></a></li>
                     <?php } ?>
 
-                    <?php if($settings->twitter) { ?>
+                    <?php if (isset($settings->twitter)) { ?>
                         <li class="twitter"><a target="_blank" href="<?php echo $settings->twitter; ?>"><i class="fa fa-twitter"></i></a></li>
                     <?php } ?>
-                    <?php if($settings->instagram) { ?>
+                    <?php if (isset($settings->instagram)) { ?>
                         <li class="instagram"><a target="_blank" href="<?php echo $settings->instagram; ?>"><i class="fa fa-instagram"></i></a></li>
                     <?php } ?>
-                    <?php if($settings->linkedin) { ?>
+                    <?php if (isset($settings->linkedin)) { ?>
                         <li class="linkedin"><a target="_blank" href="<?php echo $settings->linkedin; ?>"><i class="fa fa-linkedin"></i></a></li>
                     <?php } ?>
                 </ul>

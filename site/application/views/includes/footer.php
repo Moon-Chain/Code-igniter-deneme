@@ -11,27 +11,37 @@
                     <div class="col-lg-6">
                         <div class="footer-content">
                             <div class="logo-footer"><img id="logo-footer" src="images/logo_blue.png" alt=""></div>
-                            <p>
-                                <?php echo $settings->mission ; ?>
-                            </p>
+                            <?php if (!empty($settings->mission)) { ?>
+                                <p>
+                                    <?php echo $settings->mission; ?>
+                                </p>
+                            <?php } ?>
                             <ul class="list-inline mb-20">
-                                <li class="list-inline-item"><i class="text-default fa fa-map-marker pr-1"></i> <?php echo $settings->address; ?></li>
-                                <li class="list-inline-item"><i class="text-default fa fa-phone pl-10 pr-1"></i> <?php echo $settings->phone_1; ?></li>
-                                <li class="list-inline-item"><a href="mailto:info@theproject.com" class="link-dark"><i class="text-default fa fa-envelope-o pl-10 pr-1"></i> <?php echo $settings->email; ?></a></li>
+                                <?php if (!empty($settings->address)) { ?>
+                                    <li class="list-inline-item"><i class="text-default fa fa-map-marker pr-1"></i> <?php echo $settings->address; ?></li>
+                                <?php } ?>
+
+                                <?php if (!empty($settings->phone_1)) { ?>
+                                    <li class="list-inline-item"><i class="text-default fa fa-phone pl-10 pr-1"></i> <?php echo $settings->phone_1; ?></li>
+                                <?php } ?>
+
+                                <?php if (!empty($settings->email)) { ?>
+                                    <li class="list-inline-item"><a href="mailto:info@theproject.com" class="link-dark"><i class="text-default fa fa-envelope-o pl-10 pr-1"></i> <?php echo $settings->email; ?></a></li>
+                                <?php } ?>
                             </ul>
                             <div class="separator-2"></div>
                             <ul class="social-links circle margin-clear animated-effect-1">
 
-                                <?php if(!empty($settings->facebook)){ ?>
+                                <?php if (!empty($settings->facebook)) { ?>
                                     <li class="facebook"><a target="_blank" href="<?php echo $settings->facebook; ?>"><i class="fa fa-facebook"></i></a></li>
                                 <?php } ?>
-                                <?php if(!empty($settings->twitter)){ ?>
+                                <?php if (!empty($settings->twitter)) { ?>
                                     <li class="twitter"><a target="_blank" href="<?php echo $settings->twitter; ?>"><i class="fa fa-twitter"></i></a></li>
                                 <?php } ?>
-                                <?php if(!empty($settings->instagram)){ ?>
+                                <?php if (!empty($settings->instagram)) { ?>
                                     <li class="instagram"><a target="_blank" href="<?php echo $settings->instagram; ?>"><i class="fa fa-instagram"></i></a></li>
                                 <?php } ?>
-                                <?php if(!empty($settings->linkedin)){ ?>
+                                <?php if (!empty($settings->linkedin)) { ?>
                                     <li class="linkedin"><a target="_blank" href="<?php echo $settings->linkedin; ?>"><i class="fa fa-linkedin"></i></a></li>
                                 <?php } ?>
                             </ul>
