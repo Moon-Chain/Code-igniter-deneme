@@ -1,6 +1,7 @@
 <?php
 
-function get_product_cover_image($product_id){
+function get_product_cover_image($product_id)
+{
 
     $t = &get_instance();
 
@@ -13,28 +14,40 @@ function get_product_cover_image($product_id){
         )
     );
 
-    if(empty($cover_image)){
+    if (empty($cover_image)) {
 
         $cover_image = $t->product_image_model->get(
             array(
                 "product_id"    => $product_id
             )
         );
-
     }
 
     return !empty($cover_image) ? $cover_image->img_url : "";
-
 }
 
 
-function get_readable_date($date){
+function get_readable_date($date)
+{
 
     setlocale(LC_ALL, 'tr_TR.UTF-8');
     return strftime('%e %B %Y', strtotime($date));
 }
 
-function get_portfolio_category_title($id){
+function get_active_user()
+{
+    $t = &get_instance();
+
+    $user = $t->session->userdata("user");
+
+    if ($user)
+        return $user;
+    else
+        return false;
+}
+
+function get_portfolio_category_title($id)
+{
 
     $t = &get_instance();
 
@@ -48,11 +61,10 @@ function get_portfolio_category_title($id){
     );
 
     return (empty($portfolio)) ? false : $portfolio->title;
-
-
 }
 
-function get_portfolio_cover_image($id){
+function get_portfolio_cover_image($id)
+{
 
     $t = &get_instance();
 
@@ -65,26 +77,25 @@ function get_portfolio_cover_image($id){
         )
     );
 
-    if(empty($cover_image)){
+    if (empty($cover_image)) {
 
         $cover_image = $t->portfolio_image_model->get(
             array(
                 "portfolio_id"    => $id
             )
         );
-
     }
 
     return !empty($cover_image) ? $cover_image->img_url : "";
-
 }
 
-function get_settings(){
+function get_settings()
+{
 
     $t = &get_instance();
 
     $settings = $t->session->userdata("settings");
-    if(empty($settings)){
+    if (empty($settings)) {
 
         $t->load->model("settings_model");
 
@@ -96,7 +107,8 @@ function get_settings(){
     return $settings;
 }
 
-function send_email($toEmail = "", $subject = "", $message = ""){
+function send_email($toEmail = "", $subject = "", $message = "")
+{
 
     $t = &get_instance();
 
@@ -108,7 +120,7 @@ function send_email($toEmail = "", $subject = "", $message = ""){
         )
     );
 
-    if(empty($toEmail))
+    if (empty($toEmail))
         $toEmail = $email_settings->to;
 
     $config = array(
@@ -133,54 +145,47 @@ function send_email($toEmail = "", $subject = "", $message = ""){
     $t->email->message($message);
 
     return $t->email->send();
-
 }
 
 
-function get_picture($path = "", $picture = "", $resolution = "50x50"){
+function get_picture($path = "", $picture = "", $resolution = "50x50")
+{
 
 
-    if($picture != ""){
+    if ($picture != "") {
 
-        if(file_exists(FCPATH . "panel/uploads/$path/$resolution/$picture")){
+        if (file_exists(FCPATH . "panel/uploads/$path/$resolution/$picture")) {
             $picture = base_url("panel/uploads/$path/$resolution/$picture");
         } else {
             $picture = base_url("assets/images/default_image_$resolution.png");
-
         }
-
     } else {
 
 
         //construction-service-1.jpg
         $picture = base_url("assets/images/default_image_$resolution.png");
-
     }
 
     return $picture;
-
 }
 
-function get_gallery_cover_image($folderName){
+function get_gallery_cover_image($folderName)
+{
 
     $path = "panel/uploads/galleries_v/images/$folderName/350x216";
 
-    if($handle = opendir($path)){
-        while(($file = readdir($handle)) !== false){
+    if ($handle = opendir($path)) {
+        while (($file = readdir($handle)) !== false) {
 
-            if($file != "." & $file != ".."){
+            if ($file != "." & $file != "..") {
                 return $file;
             }
-
         }
-
-
     }
-
-
 }
 
-function get_popup_service($page = ""){
+function get_popup_service($page = "")
+{
 
     $t = &get_instance();
 
@@ -193,10 +198,10 @@ function get_popup_service($page = ""){
     );
 
     return (!empty($popup)) ? $popup : false;
-
 }
 
-function get_gallery_by_url($url = ""){
+function get_gallery_by_url($url = "")
+{
 
     $t = &get_instance();
     $t->load->model("gallery_model");
@@ -209,5 +214,4 @@ function get_gallery_by_url($url = ""){
     );
 
     return ($gallery) ? $gallery : false;
-
 }

@@ -23,9 +23,23 @@ class Users extends CI_Controller
 
         $viewData = new stdClass();
 
+        $user = get_active_user();
+
+        if($user->user_role == "admin"){
+
+            $where = array();
+
+        }else{
+
+            $where = array(
+                "id" => $user->id,
+            );
+
+        }
+
         /** Tablodan Verilerin Getirilmesi.. */
         $items = $this->user_model->get_all(
-            array()
+            $where
         );
 
         /** View'e gönderilecek Değişkenlerin Set Edilmesi.. */

@@ -118,7 +118,6 @@ class Home extends CI_Controller {
 
     }
 
-
     public function portfolio_list(){
 
         $viewData = new stdClass();
@@ -136,7 +135,6 @@ class Home extends CI_Controller {
         $this->load->view($viewData->viewFolder, $viewData);
 
     }
-
 
     public function portfolio_detail($url){
 

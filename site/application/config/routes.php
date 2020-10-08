@@ -85,3 +85,4 @@ $route["video-galerisi/(:any)"] = "home/video_gallery/$1";
 $route["dosya-galerisi"]        = "home/file_gallery_list";
 $route["dosya-galerisi/(:any)"] = "home/file_gallery/$1";
 
+
