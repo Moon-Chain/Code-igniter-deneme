@@ -1,8 +1,10 @@
 <div class="row">
     <div class="col-md-12">
         <h4 class="m-b-lg">
-            Kullanıcı Listesi
-            <a href="<?php echo base_url("users/new_form"); ?>" class="btn btn-outline btn-primary btn-xs pull-right"> <i class="fa fa-plus"></i> Yeni Ekle</a>
+            Kullanıcı Listesi <span><?php isAdmin(); ?></span>
+            <?php if(isAdmin()) { ?>
+                <a href="<?php echo base_url("users/new_form"); ?>" class="btn btn-outline btn-primary btn-xs pull-right"> <i class="fa fa-plus"></i> Yeni Ekle</a>
+            <?php } ?>
         </h4>
     </div><!-- END column -->
     <div class="col-md-12">

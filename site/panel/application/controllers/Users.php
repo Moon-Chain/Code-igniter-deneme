@@ -10,7 +10,6 @@ class Users extends CI_Controller
         parent::__construct();
 
         $this->viewFolder = "users_v";
-
         $this->load->model("user_model");
 
         if(!get_active_user()){
@@ -22,10 +21,9 @@ class Users extends CI_Controller
     public function index(){
 
         $viewData = new stdClass();
-
         $user = get_active_user();
 
-        if($user->user_role == "admin"){
+        if(isAdmin()){
 
             $where = array();
 
