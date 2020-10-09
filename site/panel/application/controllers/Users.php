@@ -12,27 +12,25 @@ class Users extends CI_Controller
         $this->viewFolder = "users_v";
         $this->load->model("user_model");
 
-        if(!get_active_user()){
+        if (!get_active_user()) {
             redirect(base_url("login"));
         }
-
     }
 
-    public function index(){
+    public function index()
+    {
 
         $viewData = new stdClass();
         $user = get_active_user();
 
-        if(isAdmin()){
+        if (isAdmin()) {
 
             $where = array();
-
-        }else{
+        } else {
 
             $where = array(
                 "id" => $user->id,
             );
-
         }
 
         /** Tablodan Verilerin Getirilmesi.. */
@@ -48,7 +46,8 @@ class Users extends CI_Controller
         $this->load->view("{$viewData->viewFolder}/{$viewData->subViewFolder}/index", $viewData);
     }
 
-    public function new_form(){
+    public function new_form()
+    {
 
         $viewData = new stdClass();
 
@@ -57,10 +56,10 @@ class Users extends CI_Controller
         $viewData->subViewFolder = "add";
 
         $this->load->view("{$viewData->viewFolder}/{$viewData->subViewFolder}/index", $viewData);
-
     }
 
-    public function save(){
+    public function save()
+    {
 
         $this->load->library("form_validation");
 
@@ -83,7 +82,7 @@ class Users extends CI_Controller
         // Form Validation Calistirilir..
         $validate = $this->form_validation->run();
 
-        if($validate){
+        if ($validate) {
 
             $insert = $this->user_model->add(
                 array(
@@ -97,14 +96,13 @@ class Users extends CI_Controller
             );
 
             // TODO Alert sistemi eklenecek...
-            if($insert){
+            if ($insert) {
 
                 $alert = array(
                     "title" => "İşlem Başarılı",
                     "text" => "Kayıt başarılı bir şekilde eklendi",
                     "type"  => "success"
                 );
-
             } else {
 
                 $alert = array(
@@ -120,7 +118,6 @@ class Users extends CI_Controller
             redirect(base_url("users"));
 
             die();
-
         } else {
 
             $viewData = new stdClass();
@@ -132,10 +129,10 @@ class Users extends CI_Controller
 
             $this->load->view("{$viewData->viewFolder}/{$viewData->subViewFolder}/index", $viewData);
         }
-
     }
 
-    public function update_form($id){
+    public function update_form($id)
+    {
 
         $viewData = new stdClass();
 
@@ -145,18 +142,17 @@ class Users extends CI_Controller
                 "id"    => $id,
             )
         );
-        
+
         /** View'e gönderilecek Değişkenlerin Set Edilmesi.. */
         $viewData->viewFolder = $this->viewFolder;
         $viewData->subViewFolder = "update";
         $viewData->item = $item;
 
         $this->load->view("{$viewData->viewFolder}/{$viewData->subViewFolder}/index", $viewData);
-
-
     }
 
-    public function update_password_form($id){
+    public function update_password_form($id)
+    {
 
         $viewData = new stdClass();
 
@@ -173,11 +169,34 @@ class Users extends CI_Controller
         $viewData->item = $item;
 
         $this->load->view("{$viewData->viewFolder}/{$viewData->subViewFolder}/index", $viewData);
-
-
     }
 
-    public function update($id){
+    public function permissions_form($id)
+    {
+
+        $viewData = new stdClass();
+
+        /** Tablodan Verilerin Getirilmesi.. */
+        $item = $this->user_model->get(
+            array(
+                "id"    => $id,
+            )
+        );
+
+        /** View'e gönderilecek Değişkenlerin Set Edilmesi.. */
+        $viewData->viewFolder = $this->viewFolder;
+        $viewData->subViewFolder = "permissions";
+        $viewData->item = $item;
+
+        $this->load->view("{$viewData->viewFolder}/{$viewData->subViewFolder}/index", $viewData);
+    }
+
+    public function update_permissions()
+    {
+    }
+
+    public function update($id)
+    {
 
         $this->load->library("form_validation");
 
@@ -187,11 +206,11 @@ class Users extends CI_Controller
             )
         );
 
-        if($oldUser->user_name != $this->input->post("user_name")){
+        if ($oldUser->user_name != $this->input->post("user_name")) {
             $this->form_validation->set_rules("user_name", "Kullanıcı Adı", "required|trim|is_unique[users.user_name]");
         }
 
-        if($oldUser->email != $this->input->post("email")){
+        if ($oldUser->email != $this->input->post("email")) {
             $this->form_validation->set_rules("email", "E-posta", "required|trim|valid_email|is_unique[users.email]");
         }
 
@@ -210,7 +229,7 @@ class Users extends CI_Controller
         // Form Validation Calistirilir..
         $validate = $this->form_validation->run();
 
-        if($validate){
+        if ($validate) {
 
             // Upload Süreci...
             $update = $this->user_model->update(
@@ -223,14 +242,13 @@ class Users extends CI_Controller
             );
 
             // TODO Alert sistemi eklenecek...
-            if($update){
+            if ($update) {
 
                 $alert = array(
                     "title" => "İşlem Başarılı",
                     "text" => "Kayıt başarılı bir şekilde güncellendi",
                     "type"  => "success"
                 );
-
             } else {
 
                 $alert = array(
@@ -244,7 +262,6 @@ class Users extends CI_Controller
             $this->session->set_flashdata("alert", $alert);
 
             redirect(base_url("users"));
-
         } else {
 
             $viewData = new stdClass();
@@ -263,10 +280,10 @@ class Users extends CI_Controller
 
             $this->load->view("{$viewData->viewFolder}/{$viewData->subViewFolder}/index", $viewData);
         }
-
     }
 
-    public function update_password($id){
+    public function update_password($id)
+    {
 
         $this->load->library("form_validation");
 
@@ -283,7 +300,7 @@ class Users extends CI_Controller
         // Form Validation Calistirilir..
         $validate = $this->form_validation->run();
 
-        if($validate){
+        if ($validate) {
 
             // Upload Süreci...
             $update = $this->user_model->update(
@@ -294,14 +311,13 @@ class Users extends CI_Controller
             );
 
             // TODO Alert sistemi eklenecek...
-            if($update){
+            if ($update) {
 
                 $alert = array(
                     "title" => "İşlem Başarılı",
                     "text" => "Şifreniz başarılı bir şekilde güncellendi",
                     "type"  => "success"
                 );
-
             } else {
 
                 $alert = array(
@@ -315,7 +331,6 @@ class Users extends CI_Controller
             $this->session->set_flashdata("alert", $alert);
 
             redirect(base_url("users"));
-
         } else {
 
             $viewData = new stdClass();
@@ -334,10 +349,10 @@ class Users extends CI_Controller
 
             $this->load->view("{$viewData->viewFolder}/{$viewData->subViewFolder}/index", $viewData);
         }
-
     }
 
-    public function delete($id){
+    public function delete($id)
+    {
 
         $delete = $this->user_model->delete(
             array(
@@ -346,14 +361,13 @@ class Users extends CI_Controller
         );
 
         // TODO Alert Sistemi Eklenecek...
-        if($delete){
+        if ($delete) {
 
             $alert = array(
                 "title" => "İşlem Başarılı",
                 "text" => "Kayıt başarılı bir şekilde silindi",
                 "type"  => "success"
             );
-
         } else {
 
             $alert = array(
@@ -361,19 +375,16 @@ class Users extends CI_Controller
                 "text" => "Kayıt silme sırasında bir problem oluştu",
                 "type"  => "error"
             );
-
-
         }
 
         $this->session->set_flashdata("alert", $alert);
         redirect(base_url("users"));
-
-
     }
 
-    public function isActiveSetter($id){
+    public function isActiveSetter($id)
+    {
 
-        if($id){
+        if ($id) {
 
             $isActive = ($this->input->post("data") === "true") ? 1 : 0;
 
@@ -387,5 +398,4 @@ class Users extends CI_Controller
             );
         }
     }
-
 }
