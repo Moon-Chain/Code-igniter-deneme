@@ -22,16 +22,16 @@
                                 <tr>
                                     <td><?php echo $controllerName; ?></td>
                                     <td class="w50">
-                                        <input name="" type="checkbox" data-switchery data-color="#10c469">
+                                        <input name="permissions[<?php echo $controllerName; ?>][read]" type="checkbox" data-switchery data-color="#10c469">
                                     </td>
                                     <td class="w50">
-                                        <input name="" type="checkbox" data-switchery data-color="#10c469">
+                                        <input name="permissions[<?php echo $controllerName; ?>][write]" type="checkbox" data-switchery data-color="#10c469">
                                     </td>
                                     <td class="w50">
-                                        <input name="" type="checkbox" data-switchery data-color="#10c469">
+                                        <input name="permissions[<?php echo $controllerName; ?>][update]" type="checkbox" data-switchery data-color="#10c469">
                                     </td>
                                     <td class="w50">
-                                        <input name="" type="checkbox" data-switchery data-color="#10c469">
+                                        <input name="permissions[<?php echo $controllerName; ?>][delete]" type="checkbox" data-switchery data-color="#10c469">
                                     </td>
                                 </tr>
                             <?php } ?>
