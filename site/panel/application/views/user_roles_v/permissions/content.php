@@ -1,3 +1,6 @@
+<?php 
+$permissions = json_decode($item->permissions)
+?>
 <div class="row">
     <div class="col-md-12">
         <h4 class="m-b-lg">
@@ -22,16 +25,24 @@
                                 <tr>
                                     <td><?php echo $controllerName; ?></td>
                                     <td class="w50">
-                                        <input name="permissions[<?php echo $controllerName; ?>][read]" type="checkbox" data-switchery data-color="#10c469">
+                                        <input 
+                                        <?php echo (isset($permissions->$controllerName) && isset($permissions->$controllerName->read)) ? "checked" : "" ;?>
+                                        name="permissions[<?php echo $controllerName; ?>][read]" type="checkbox" data-switchery data-color="#10c469">
                                     </td>
                                     <td class="w50">
-                                        <input name="permissions[<?php echo $controllerName; ?>][write]" type="checkbox" data-switchery data-color="#10c469">
+                                        <input 
+                                        <?php echo (isset($permissions->$controllerName) && isset($permissions->$controllerName->write)) ? "checked" : "" ;?>
+                                        name="permissions[<?php echo $controllerName; ?>][write]" type="checkbox" data-switchery data-color="#10c469">
                                     </td>
                                     <td class="w50">
-                                        <input name="permissions[<?php echo $controllerName; ?>][update]" type="checkbox" data-switchery data-color="#10c469">
+                                        <input 
+                                        <?php echo (isset($permissions->$controllerName) && isset($permissions->$controllerName->update)) ? "checked" : "" ;?>
+                                        name="permissions[<?php echo $controllerName; ?>][update]" type="checkbox" data-switchery data-color="#10c469">
                                     </td>
                                     <td class="w50">
-                                        <input name="permissions[<?php echo $controllerName; ?>][delete]" type="checkbox" data-switchery data-color="#10c469">
+                                        <input 
+                                        <?php echo (isset($permissions->$controllerName) && isset($permissions->$controllerName->delete)) ? "checked" : "" ;?>
+                                        name="permissions[<?php echo $controllerName; ?>][delete]" type="checkbox" data-switchery data-color="#10c469">
                                     </td>
                                 </tr>
                             <?php } ?>
