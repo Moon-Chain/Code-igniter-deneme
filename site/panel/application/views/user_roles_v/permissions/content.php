@@ -1,13 +1,13 @@
 <div class="row">
     <div class="col-md-12">
         <h4 class="m-b-lg">
-            <?php echo "<b>$item->user_name</b> kaydının yetkilerini değiştiriyorsunuz"; ?>
+            <?php echo "<b>$item->title</b> kaydının yetkilerini değiştiriyorsunuz"; ?>
         </h4>
     </div><!-- END column -->
     <div class="col-md-12">
         <div class="widget">
             <div class="widget-body">
-                <form action="<?php echo base_url("users/update_permissions/$item->id"); ?>" method="post">
+                <form action="<?php echo base_url("user_roles/update_permissions/$item->id"); ?>" method="post">
 
                     <table class="table table-bordered table-striped table-hover">
                         <thead>

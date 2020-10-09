@@ -153,6 +153,13 @@
                 </li>
 
                 <li>
+                    <a href="<?php echo base_url("user_roles"); ?>">
+                        <i class="menu-icon fa fa-eye"></i>
+                        <span class="menu-text">Kullanıcı Rolü</span>
+                    </a>
+                </li>
+                
+                <li>
                     <a href="<?php echo base_url("users"); ?>">
                         <i class="menu-icon fa fa-user-secret"></i>
                         <span class="menu-text">Kullanıcılar</span>
