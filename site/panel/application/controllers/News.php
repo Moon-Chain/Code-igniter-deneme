@@ -1,6 +1,6 @@
 <?php
 
-class News extends CI_Controller
+class News extends VS_Controller
 {
     public $viewFolder = "";
 

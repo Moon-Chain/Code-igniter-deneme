@@ -1,6 +1,6 @@
 <?php
 
-class Emailsettings extends CI_Controller
+class Emailsettings extends VS_Controller
 {
     public $viewFolder = "";
 

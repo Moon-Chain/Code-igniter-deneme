@@ -1,6 +1,6 @@
 <?php
 
-class Product extends CI_Controller
+class Product extends VS_Controller
 {
     public $viewFolder = "";
 

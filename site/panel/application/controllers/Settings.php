@@ -1,6 +1,6 @@
 <?php
 
-class Settings extends CI_Controller
+class Settings extends VS_Controller
 {
     public $viewFolder = "";
 

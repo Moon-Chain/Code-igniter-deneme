@@ -1,6 +1,6 @@
 <?php
 
-class Portfolio extends CI_Controller
+class Portfolio extends VS_Controller
 {
     public $viewFolder = "";
 
