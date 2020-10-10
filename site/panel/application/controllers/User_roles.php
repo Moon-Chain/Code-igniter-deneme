@@ -78,6 +78,8 @@ class User_roles extends VS_Controller
             // TODO Alert sistemi eklenecek...
             if ($insert) {
 
+                setUserRoles();
+
                 $alert = array(
                     "title" => "İşlem Başarılı",
                     "text" => "Kayıt başarılı bir şekilde eklendi",
@@ -159,7 +161,8 @@ class User_roles extends VS_Controller
 
             // TODO Alert sistemi eklenecek...
             if ($update) {
-
+                
+                setUserRoles();
                 $alert = array(
                     "title" => "İşlem Başarılı",
                     "text" => "Kayıt başarılı bir şekilde güncellendi",
